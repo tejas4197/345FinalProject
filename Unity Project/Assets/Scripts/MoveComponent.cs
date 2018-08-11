@@ -36,6 +36,15 @@ public class MoveComponent : MonoBehaviour {
     {
         Debug.LogError(name + " | MoveComponent.MangeMovement() not implemented");
     }
+    
+     /// <summary>
+    /// Moves/animates actor based on provided horizontal/vertical input from MoveCommand
+    /// </summary>
+    /// <param name="input">Player input</param>
+    public virtual void ManageMovement(Vector3 input)
+    {
+        Debug.LogError(name + " | MoveComponent.MangeMovement() not implemented");
+    }
 
     /// <summary>
     /// Triggers jump (if implemented in derived class)

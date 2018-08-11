@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class TopDownMoveComponent : MoveComponent {
 
-    Rigidbody2D rbody;
+    Rigidbody rbody;
     
 	// Use this for initialization
 	void Start () {
         base.Start();
-        rbody = GetComponent<Rigidbody2D>();
+        rbody = GetComponent<Rigidbody>();
 	}
 
     /// <summary>
@@ -17,14 +17,14 @@ public class TopDownMoveComponent : MoveComponent {
     /// </summary>
     /// <param name="input">Player input</param>
     override
-    public void ManageMovement(Vector2 input)
+    public void ManageMovement(Vector3 input)
     {
         // Move actor in direction of input
-        Vector2 movement = input * moveSpeed;
+        Vector3 movement = input * moveSpeed;
         rbody.velocity = movement;
         
         // Calculate new direction if we're moving
-        bool moving = input != Vector2.zero;
+        bool moving = input != Vector3.zero;
         if(moving) {
             currentDirection = FaceDirection(input);
         }

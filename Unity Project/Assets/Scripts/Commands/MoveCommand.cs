@@ -18,7 +18,7 @@ public class MoveCommand : Command {
 	public override void execute(Actor actor) {
 
 		// Get player input
-        Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        Vector3 input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
         MoveComponent moveComponent = actor.GetComponent<MoveComponent>();
 
