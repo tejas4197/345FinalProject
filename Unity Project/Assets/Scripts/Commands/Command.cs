@@ -37,10 +37,11 @@ public class Command : MonoBehaviour {
 
 	// public Command() {}
 
+    // target of command
     public enum Type
     {
-        MOVEMENT,
-        ATTACK
+        SELF,
+        TARGET
     }
 
     /// <summary>
@@ -50,8 +51,15 @@ public class Command : MonoBehaviour {
     public Type type;
 
     /// <summary>
-    /// Executes the command on the provided actor.
+    /// Executes the command for the provided actor.
     /// </summary>
     /// <param name="actor">The actor.</param>
     public virtual void execute(Actor actor) {}
+
+    /// <summary>
+    /// Executes the command for the provided actor, on a given target.
+    /// </summary>
+    /// <param name="actor">The actor.</param>
+    /// <param name="target">The target.</param>
+    public virtual void execute(Actor actor, GameObject target) {}
 }

@@ -15,12 +15,12 @@ on a separate NPCMoveComponent)
 
 public class MoveCommand : Command {
 
-	public override void execute(Actor actor) {
+	void Update() {
 
 		// Get player input
         Vector3 input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-        MoveComponent moveComponent = actor.GetComponent<MoveComponent>();
+        MoveComponent moveComponent = GetComponent<MoveComponent>();
 
         // Check for attached MoveComponent
         if(moveComponent != null)
@@ -30,7 +30,7 @@ public class MoveCommand : Command {
         }
         else
         {
-            GameController.LogWarning("Unable to execute MoveCommand on actor " + actor.name + " - no MoveComponent found", GameController.LogCommands);
+            GameController.LogWarning("Unable to execute MoveCommand on " + name + " - no MoveComponent found", GameController.LogCommands);
         }
         
 	}

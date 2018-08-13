@@ -2,43 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Linq;
 
 public class EnemyMoveCommand : Command {
 
-	/// <summary>
-	/// Target of movement
-	/// </summary>
-	Transform target;
-
 	NavMeshAgent navComponent;
 
-	public Actor player;
+	public Actor target;
 
-	/// <summary>
-	/// Start is called on the frame when a script is enabled just before
-	/// any of the Update methods is called the first time.
-	/// </summary>
-	void Start()
-	{
-		navComponent = GetComponent<NavMeshAgent>();
-		target = player.transform;
-	}
+    private void Start()
+    {
+        target = FindObjectsOfType<Actor>().Where(a => a.isPlayer).First();
+    }
 
-	void FixedUpdate()
+    // TODO: add a listener to catch an EnemyMerge event and change target to mergeable enemy
+
+    void Update ()
 	{
-		if(target) {
-			navComponent.SetDestination(target.position);
-		}
-	}
-	
-	public override void execute(Actor actor)
-	{
+        GameController.Log(name + " moving towards " + target.name);
+
 		if(!navComponent) {
 			navComponent = GetComponent<NavMeshAgent>();
 		}
 
-		navComponent.SetDestination(actor.transform.position);
-
-		// navComponent.SetDestination(target.position);
+		navComponent.SetDestination(target.transform.position);
 	}
 }
