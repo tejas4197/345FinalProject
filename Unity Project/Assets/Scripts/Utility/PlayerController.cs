@@ -48,16 +48,41 @@ public class PlayerController : MonoBehaviour
         return FindObjectsOfType<Actor>().Where(i => i.isPlayer).First() as Actor;
     }
 
+    /// <summary>
+    /// Returns GameObject reference to Player actor in scene.
+    /// </summary>
+    /// <returns></returns>
+    public GameObject FindPlayerAsGameObject()
+    {
+        return GameObject.FindWithTag("Player");
+    }
+
     void Update () 
     {
         // Iterate through each commandType in action queue and execute corresponding command
         foreach(Command.Type commandType in controlledActor.actionQueue)
         {
             List<Command> commands = controlledActor.commands.FindAll(i => i.type == commandType);
-            foreach(Command command in commands) {
-                command.execute(controlledActor);
+
+            switch(commandType) {
+                case Command.Type.SELF:
+                    foreach (Command command in commands) {
+                        command.execute(controlledActor);
+                    }
+                    break;
+                case Command.Type.TARGET:
+                    GameObject player = FindPlayerAsGameObject();
+                    foreach (Command command in commands) {
+                        command.execute(controlledActor, player);
+                    }
+                    break;
             }
         }
+    }
+
+    private void ExecuteCommands(Actor actor)
+    {
+        throw new NotImplementedException();
     }
 
     /// <summary>
