@@ -40,9 +40,6 @@ public class GameController : MonoBehaviour {
 
         // Initialize each logger
         InitializeLoggers();
-
-        // Player Controller
-        PlayerController = GetComponent<PlayerController>();
 	}
 
     /// <summary>
@@ -102,10 +99,5 @@ public class GameController : MonoBehaviour {
     /// Command logger
     /// </summary>
     public static LogHelper LogCommands = new LogHelper();
-
-    /// <summary>
-    /// Player controller
-    /// </summary>
-    public static PlayerController PlayerController { get; private set; }
 
 }
