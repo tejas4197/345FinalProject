@@ -31,7 +31,7 @@ public class EnemyMoveCommand : Command {
 		}
 	}
 	
-	public override void execute(Actor actor)
+	public override void execute(Actor actor, GameObject target)
 	{
 		if(!navComponent) {
 			navComponent = GetComponent<NavMeshAgent>();
