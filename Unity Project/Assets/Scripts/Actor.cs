@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 /*
 
@@ -27,16 +28,6 @@ public class Actor : MonoBehaviour {
 	public bool isPlayer;
 
     /// <summary>
-    /// Contains objects that are used by the actor
-    /// </summary>
-    public List<GameObject> inventory;
-
-    /// <summary>
-    /// List of commands available to the actor
-    /// </summary>
-    public List<Command.Type> actionQueue;
-
-    /// <summary>
     /// Text label displayed below actor (TODO: remove this from future projects)
     /// Collection of commands to execute
     /// </summary>
@@ -44,6 +35,6 @@ public class Actor : MonoBehaviour {
 
     private void Start()
     {
-        // Initialize text label below actor
+        commands = GetComponents<Command>().ToList();
     }
 }

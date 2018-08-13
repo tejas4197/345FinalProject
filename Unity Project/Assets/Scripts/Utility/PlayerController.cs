@@ -82,11 +82,9 @@ public class PlayerController : MonoBehaviour
                     command.execute(actor);
                     break;
 
-                // TODO: allow player to perform TARGET commands on an enemy
                 // Commands performed on some target
                 case Command.Type.TARGET:
-                    GameObject player = FindPlayerAsGameObject();
-                    command.execute(actor, player);
+                    command.execute(actor);
                     break;
             }
         }

@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Linq;
 
 public class EnemyMoveCommand : Command {
 
-	/// <summary>
-	/// Target of movement
-	/// </summary>
-	Transform target;
-
 	NavMeshAgent navComponent;
 
-	public Actor player;
-	
-	public override void execute(Actor actor, GameObject target)
+	public Actor target;
+
+    private void Start()
+    {
+        target = FindObjectsOfType<Actor>().Where(a => a.isPlayer).First();
+    }
+
+    // TODO: add a listener to catch an EnemyMerge event and change target to mergeable enemy
+
+    public override void execute(Actor actor)
 	{
         GameController.Log(actor.name + " moving towards " + target.name);
 
@@ -23,7 +26,5 @@ public class EnemyMoveCommand : Command {
 		}
 
 		navComponent.SetDestination(target.transform.position);
-
-		// navComponent.SetDestination(target.position);
 	}
 }
