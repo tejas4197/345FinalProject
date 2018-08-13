@@ -17,12 +17,12 @@ public class EnemyMoveCommand : Command {
 
     // TODO: add a listener to catch an EnemyMerge event and change target to mergeable enemy
 
-    public override void execute(Actor actor)
+    void Update ()
 	{
-        GameController.Log(actor.name + " moving towards " + target.name);
+        GameController.Log(name + " moving towards " + target.name);
 
 		if(!navComponent) {
-			navComponent = actor.GetComponent<NavMeshAgent>();
+			navComponent = GetComponent<NavMeshAgent>();
 		}
 
 		navComponent.SetDestination(target.transform.position);
