@@ -13,31 +13,16 @@ public class EnemyMoveCommand : Command {
 	NavMeshAgent navComponent;
 
 	public Actor player;
-
-	/// <summary>
-	/// Start is called on the frame when a script is enabled just before
-	/// any of the Update methods is called the first time.
-	/// </summary>
-	void Start()
-	{
-		navComponent = GetComponent<NavMeshAgent>();
-		target = player.transform;
-	}
-
-	void FixedUpdate()
-	{
-		if(target) {
-			navComponent.SetDestination(target.position);
-		}
-	}
 	
 	public override void execute(Actor actor, GameObject target)
 	{
+        GameController.Log(actor.name + " moving towards " + target.name);
+
 		if(!navComponent) {
-			navComponent = GetComponent<NavMeshAgent>();
+			navComponent = actor.GetComponent<NavMeshAgent>();
 		}
 
-		navComponent.SetDestination(actor.transform.position);
+		navComponent.SetDestination(target.transform.position);
 
 		// navComponent.SetDestination(target.position);
 	}

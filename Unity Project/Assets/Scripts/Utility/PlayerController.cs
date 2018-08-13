@@ -59,30 +59,37 @@ public class PlayerController : MonoBehaviour
 
     void Update () 
     {
-        // Iterate through each commandType in action queue and execute corresponding command
-        foreach(Command.Type commandType in controlledActor.actionQueue)
-        {
-            List<Command> commands = controlledActor.commands.FindAll(i => i.type == commandType);
-
-            switch(commandType) {
-                case Command.Type.SELF:
-                    foreach (Command command in commands) {
-                        command.execute(controlledActor);
-                    }
-                    break;
-                case Command.Type.TARGET:
-                    GameObject player = FindPlayerAsGameObject();
-                    foreach (Command command in commands) {
-                        command.execute(controlledActor, player);
-                    }
-                    break;
-            }
+        List<Actor> actors = FindObjectsOfType<Actor>().ToList();
+        
+        foreach(Actor actor in actors) {
+            ExecuteCommands(actor);
         }
     }
 
+
+    /// <summary>
+    /// Performs all commands in the actor's commands list
+    /// </summary>
+    /// <param name="actor">The actor.</param>
     private void ExecuteCommands(Actor actor)
     {
-        throw new NotImplementedException();
+        // Execute each command in actor's command list
+        foreach(Command command in actor.commands) {
+            switch (command.type) {
+
+                // Commands performed without a target
+                case Command.Type.SELF:
+                    command.execute(actor);
+                    break;
+
+                // TODO: allow player to perform TARGET commands on an enemy
+                // Commands performed on some target
+                case Command.Type.TARGET:
+                    GameObject player = FindPlayerAsGameObject();
+                    command.execute(actor, player);
+                    break;
+            }
+        }
     }
 
     /// <summary>

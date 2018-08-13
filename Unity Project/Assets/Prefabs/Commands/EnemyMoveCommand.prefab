@@ -51,6 +51,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 960ef2d4650b042f8a7e267e64308efb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  target: {fileID: 0}
-  navComponent: {fileID: 0}
+  type: 1
+  player: {fileID: 0}
