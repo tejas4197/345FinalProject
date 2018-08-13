@@ -26,15 +26,4 @@ public class Actor : MonoBehaviour {
 	/// True if actor is player character
 	/// </summary>
 	public bool isPlayer;
-
-    /// <summary>
-    /// Text label displayed below actor (TODO: remove this from future projects)
-    /// Collection of commands to execute
-    /// </summary>
-    public List<Command> commands;
-
-    private void Start()
-    {
-        commands = GetComponents<Command>().ToList();
-    }
 }
