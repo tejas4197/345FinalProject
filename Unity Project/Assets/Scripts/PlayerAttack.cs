@@ -10,19 +10,23 @@ public class PlayerAttack : MonoBehaviour {
     public float atkSpeed;
     public float atkCooldown;
     public float atkConeAngle;
+    public float atkDamage;
 
     float timer;
     Vector3 atkVector;
     Ray mouseRay;
-    RaycastHit hit;
+    RaycastHit rayHit, lineHit;
     ParticleSystem currAtkParticles;
     int layerMask;
+    List<GameObject> hitThisAttack;
 
 	void Start ()
     {
         // Ignore collisions on every layer except layer 9 (background layer)
         layerMask = 1 << 9;
+
         timer = atkCooldown;
+        hitThisAttack = new List<GameObject>();
 	}
 	
 	void Update ()
@@ -34,10 +38,10 @@ public class PlayerAttack : MonoBehaviour {
         {
             // Raycast from mouse to background layer
             mouseRay = mainCamera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(mouseRay, out hit, Mathf.Infinity, layerMask))
+            if (Physics.Raycast(mouseRay, out rayHit, Mathf.Infinity, layerMask))
             {
                 // Get a vector drawing from AttackRef to mouse position and then scale it to the magnitude atkRange
-                atkVector = hit.point - gameObject.transform.position;
+                atkVector = rayHit.point - gameObject.transform.position;
                 atkVector.Normalize();
                 atkVector *= atkRange;
                 Debug.DrawRay(gameObject.transform.position, atkVector, Color.red);
@@ -45,7 +49,7 @@ public class PlayerAttack : MonoBehaviour {
                 //Instantiate attack particle
                 currAtkParticles = Instantiate(atkParticles, gameObject.transform, false);
                 currAtkParticles.transform.Translate(atkVector.x, 1, atkVector.z);
-                currAtkParticles.transform.RotateAround(gameObject.transform.position, Vector3.up, -(atkConeAngle / 2));
+                currAtkParticles.transform.RotateAround(gameObject.transform.position, Vector3.up, atkConeAngle / 2);
                 StartCoroutine(Attack());
             }
 
@@ -57,9 +61,26 @@ public class PlayerAttack : MonoBehaviour {
     {
         for (float atkTimer = 0; atkTimer < atkSpeed; atkTimer += Time.deltaTime)
         {
-            currAtkParticles.transform.RotateAround(gameObject.transform.position, Vector3.up, atkConeAngle / (atkSpeed / Time.deltaTime));
+            // Rotate particle
+            currAtkParticles.transform.RotateAround(gameObject.transform.position, Vector3.up, -atkConeAngle / (atkSpeed / Time.deltaTime));
+
+            // Check if enemies are hit
+            if (Physics.Linecast(gameObject.transform.position, currAtkParticles.transform.position, out lineHit))
+            {
+               GameObject objectHit = lineHit.collider.gameObject;
+                if (objectHit.tag.Equals("Enemy"))
+                {
+                    if (!hitThisAttack.Contains(objectHit))
+                    {
+                        objectHit.GetComponent<Actor>().health -= atkDamage;
+                        hitThisAttack.Add(objectHit);
+                    }
+                }
+            }
+
             yield return null;
         }
         Destroy(currAtkParticles);
+        hitThisAttack.Clear();
     }
 }
