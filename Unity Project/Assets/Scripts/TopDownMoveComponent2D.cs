@@ -7,7 +7,7 @@ public class TopDownMoveComponent2D : MoveComponent {
     Rigidbody2D rbody;
     
 	// Use this for initialization
-	void Start () {
+	new void Start () {
         base.Start();
         rbody = GetComponent<Rigidbody2D>();
 	}
