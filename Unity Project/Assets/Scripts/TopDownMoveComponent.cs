@@ -12,10 +12,11 @@ public class TopDownMoveComponent : MoveComponent {
     float timer;
 
     // Use this for initialization
-    new void Start () {
+    new void Start ()
+    {
         base.Start();
         rbody = GetComponent<Rigidbody>();
-        timer = 1;
+        timer = dashCooldown;
 	}
 
     /// <summary>
@@ -28,13 +29,14 @@ public class TopDownMoveComponent : MoveComponent {
         timer += Time.deltaTime;
 
         // Check if player is starting dash
-        if (Input.GetKeyDown(KeyCode.Space) && timer > dashCooldown)
+        if (Input.GetKeyDown(KeyCode.Space) && timer >= dashCooldown)
         {
             timer = 0;
         }
 
         // Get player input
         Vector3 input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        input = Vector3.ClampMagnitude(input, 1);
         
         // Move actor in direction of input
         Vector3 movement = input * moveSpeed;
