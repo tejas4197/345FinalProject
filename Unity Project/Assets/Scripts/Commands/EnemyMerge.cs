@@ -11,6 +11,16 @@ public class EnemyMerge : MonoBehaviour
 	Actor mergeEnemy;
 
 	/// <summary>
+	/// True if preparing to merge with another enemy
+	/// </summary>
+	public bool merging;
+
+	/// <summary>
+	/// True if have performed a merge with enemy (will be deleted next frame)
+	/// </summary>
+	public bool merged;
+
+	/// <summary>
 	/// Distance between enemies before they merge
 	/// </summary>
 	public float mergeDistance;
@@ -40,7 +50,7 @@ public class EnemyMerge : MonoBehaviour
 	{
 		Actor actor = other.gameObject.GetComponentInParent<Actor>();
 		if(actor) {
-			Debug.Log(name + " collided with actor: " + actor.name);
+			// Debug.Log(name + " collided with actor: " + actor.name);
 
 			if(!actor.isPlayer) {
 				mergeEnemy = actor;
@@ -69,8 +79,11 @@ public class EnemyMerge : MonoBehaviour
 			Debug.Log(transform.parent.name + " ready to merge with " + mergeEnemy.name);
 			CancelInvoke("MoveTowardsEnemy");
 
-			// Merge with enemy
-			Merge();
+			// Merge with enemy if they haven't merged with us yet
+			if(!mergeEnemy.GetComponentInChildren<EnemyMerge>().merged) {
+				Merge();
+			}
+			
 		}
 	}
 
@@ -98,6 +111,7 @@ public class EnemyMerge : MonoBehaviour
 		newEnemy.name = "New Enemy";
 		newEnemy.transform.position = mergeEnemy.transform.position;
 
+		merged = true;
 
 		// Destroy both enemies
 		Destroy(mergeEnemy.gameObject);
