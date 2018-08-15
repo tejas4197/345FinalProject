@@ -52,7 +52,7 @@ public class EnemyMerge : MonoBehaviour
 		if(actor) {
 			// Debug.Log(name + " collided with actor: " + actor.name);
 
-			if(!actor.isPlayer) {
+			if(!merging && !actor.isPlayer) {
 				mergeEnemy = actor;
 
 				Debug.Log(transform.parent.name + " moving towards " + mergeEnemy.name);
@@ -67,6 +67,8 @@ public class EnemyMerge : MonoBehaviour
 	/// </summary>
 	void MoveTowardsEnemy()
 	{
+		merging = true;
+
 		// Check if reference to enemy is null
 		if(!mergeEnemy) {
 			GameController.LogWarning(transform.parent.name + " - attempting to merge with enemy without reference");
