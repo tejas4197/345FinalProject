@@ -1,10 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyMerge : MonoBehaviour 
 {
-	// Use this for initialization
+	/// <summary>
+	/// Enemy to merge with
+	/// </summary>
+	Actor mergeEnemy;
+
+	/// <summary>
+	/// Distance between enemies before they merge
+	/// </summary>
+	public float mergeDistance;
+
 	void Start () 
 	{
 		SphereCollider mergeBounds = GetComponent<SphereCollider>();
@@ -29,7 +39,53 @@ public class EnemyMerge : MonoBehaviour
 
 			if(!actor.isPlayer) {
 				Debug.Log("Can merge with enemy " + actor.name);
+				
+				mergeEnemy = actor;
+				InvokeRepeating("MoveTowardsEnemy", Time.deltaTime, Time.deltaTime);
 			}
 		}
+	}
+
+	/// <summary>
+	/// Move towards enemy until with mergeDistance
+	/// (called via InvokeRepeating)
+	/// </summary>
+	void MoveTowardsEnemy()
+	{
+		// Check if reference to enemy is null
+		if(!mergeEnemy) {
+			GameController.LogWarning(transform.parent.name + " - attempting to merge with enemy without reference");
+			return;
+		}
+		// Move towards enemy
+		mergeEnemy.GetComponent<NavMeshAgent>().SetDestination(transform.parent.position);
+		Debug.Log(name + " moving towards " + mergeEnemy.name);
+
+		if(WithinRange()) {
+			Debug.Log(transform.parent.name + " ready to merge with " + mergeEnemy.name);
+			// Stop moving
+			mergeEnemy.GetComponent<NavMeshAgent>().isStopped = true;
+			CancelInvoke("MoveTowardsEnemy");
+
+			// Merge with enemy
+			Merge(mergeEnemy);
+		}
+	}
+
+	/// <summary>
+	/// Returns true if within merge distance of another enemy
+	/// </summary>
+	/// <returns></returns>
+	bool WithinRange()
+	{
+		if(!mergeEnemy) {
+			return false;
+		}
+		return Vector3.Magnitude(transform.parent.position - mergeEnemy.transform.position) < mergeDistance;
+	}
+
+	void Merge(Actor actor)
+	{
+		
 	}
 }
