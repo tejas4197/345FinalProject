@@ -15,6 +15,11 @@ public class EnemyMerge : MonoBehaviour
 	/// </summary>
 	public float mergeDistance;
 
+	/// <summary>
+	/// Enemy spawned via merge
+	/// </summary>
+	public Actor newEnemy;
+
 	void Start () 
 	{
 		SphereCollider mergeBounds = GetComponent<SphereCollider>();
@@ -38,9 +43,9 @@ public class EnemyMerge : MonoBehaviour
 			Debug.Log(name + " collided with actor: " + actor.name);
 
 			if(!actor.isPlayer) {
-				Debug.Log("Can merge with enemy " + actor.name);
-				
 				mergeEnemy = actor;
+
+				Debug.Log(transform.parent.name + " moving towards " + mergeEnemy.name);
 				InvokeRepeating("MoveTowardsEnemy", Time.deltaTime, Time.deltaTime);
 			}
 		}
@@ -59,16 +64,13 @@ public class EnemyMerge : MonoBehaviour
 		}
 		// Move towards enemy
 		mergeEnemy.GetComponent<NavMeshAgent>().SetDestination(transform.parent.position);
-		Debug.Log(name + " moving towards " + mergeEnemy.name);
 
 		if(WithinRange()) {
 			Debug.Log(transform.parent.name + " ready to merge with " + mergeEnemy.name);
-			// Stop moving
-			mergeEnemy.GetComponent<NavMeshAgent>().isStopped = true;
 			CancelInvoke("MoveTowardsEnemy");
 
 			// Merge with enemy
-			Merge(mergeEnemy);
+			Merge();
 		}
 	}
 
@@ -84,8 +86,21 @@ public class EnemyMerge : MonoBehaviour
 		return Vector3.Magnitude(transform.parent.position - mergeEnemy.transform.position) < mergeDistance;
 	}
 
-	void Merge(Actor actor)
+	void Merge()
 	{
-		
+		Debug.Log(transform.parent.name + " merging with " + mergeEnemy.name);
+
+		if(!newEnemy) {
+			Debug.Log(transform.parent.name + " - enemy merge could not be resolved; resulting enemy not determined");
+			return;
+		}
+		newEnemy = Instantiate(newEnemy);
+		newEnemy.name = "New Enemy";
+		newEnemy.transform.position = mergeEnemy.transform.position;
+
+
+		// Destroy both enemies
+		Destroy(mergeEnemy.gameObject);
+		Destroy(transform.parent.gameObject);
 	}
 }
