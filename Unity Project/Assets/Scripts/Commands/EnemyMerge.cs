@@ -5,6 +5,15 @@ using UnityEngine.AI;
 
 public class EnemyMerge : MonoBehaviour 
 {
+	// Indicates if enemy is merging or has merged (will be deleted next frame)
+	public enum MergeState {
+		NOT_MERGING,
+		MERGING,
+		MERGED
+	}
+
+	public MergeState state;
+
 	/// <summary>
 	/// Enemy to merge with
 	/// </summary>
@@ -40,6 +49,9 @@ public class EnemyMerge : MonoBehaviour
 
 		// Ignore collision with self
 		Physics.IgnoreCollision(mergeBounds, transform.parent.GetComponent<Collider>());
+
+		// Initialize merge state
+		state = MergeState.NOT_MERGING;
 	}
 	
 	/// <summary>
@@ -52,11 +64,14 @@ public class EnemyMerge : MonoBehaviour
 		if(actor) {
 			// Debug.Log(name + " collided with actor: " + actor.name);
 
-			if(!merging && !actor.isPlayer) {
+			if(!state.Equals(MergeState.MERGING) && !actor.isPlayer) {
 				mergeEnemy = actor;
 
 				Debug.Log(transform.parent.name + " moving towards " + mergeEnemy.name);
 				InvokeRepeating("MoveTowardsEnemy", Time.deltaTime, Time.deltaTime);
+				
+				// Set merge state
+				state = MergeState.MERGING;
 			}
 		}
 	}
@@ -67,8 +82,6 @@ public class EnemyMerge : MonoBehaviour
 	/// </summary>
 	void MoveTowardsEnemy()
 	{
-		merging = true;
-
 		// Check if reference to enemy is null
 		if(!mergeEnemy) {
 			GameController.LogWarning(transform.parent.name + " - attempting to merge with enemy without reference");
@@ -82,7 +95,7 @@ public class EnemyMerge : MonoBehaviour
 			CancelInvoke();
 
 			// Merge with enemy if they haven't merged with us yet
-			if(!mergeEnemy.GetComponentInChildren<EnemyMerge>().merged) {
+			if(!mergeEnemy.GetComponentInChildren<EnemyMerge>().state.Equals(MergeState.MERGED)) {
 				Merge();
 			}
 			
@@ -95,6 +108,7 @@ public class EnemyMerge : MonoBehaviour
 	/// <returns></returns>
 	bool WithinRange()
 	{
+		// Return false if enemy is null
 		if(!mergeEnemy) {
 			return false;
 		}
@@ -109,11 +123,13 @@ public class EnemyMerge : MonoBehaviour
 			Debug.Log(transform.parent.name + " - enemy merge could not be resolved; resulting enemy not determined");
 			return;
 		}
+		
+		// Spawn new enemy at current location
 		newEnemy.transform.position = mergeEnemy.transform.position;
 		newEnemy = Instantiate(newEnemy);
 		newEnemy.name = "New Enemy";
 
-		merged = true;
+		state = MergeState.MERGED;
 
 		// Destroy both enemies
 		Destroy(mergeEnemy.gameObject);
