@@ -159,6 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   isPlayer: 0
+  color: 6
 --- !u!114 &114532113625015594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -183,8 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0a37be05bb2641a682b2b40e2db9159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  merging: 0
-  merged: 0
+  state: 0
   mergeDistance: 1.5
   newEnemy: {fileID: 114121202167914928, guid: 2f70465bd9785a34ca9d03f9d271c747, type: 2}
 --- !u!135 &135462909745670796

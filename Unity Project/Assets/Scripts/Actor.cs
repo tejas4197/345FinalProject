@@ -26,4 +26,17 @@ public class Actor : MonoBehaviour {
 	/// True if actor is player character
 	/// </summary>
 	public bool isPlayer;
+
+	public Color color;
+
+	public enum Color {
+		BLACK,
+		RED,
+		GREEN,
+		BLUE,
+		CYAN,
+		MAGENTA,
+		YELLOW,
+		WHITE
+	}
 }
