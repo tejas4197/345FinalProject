@@ -68,7 +68,7 @@ public class EnemyMerge : MonoBehaviour
 				mergeEnemy = actor;
 
 				Debug.Log(transform.parent.name + " moving towards " + mergeEnemy.name);
-				InvokeRepeating("MoveTowardsEnemy", Time.deltaTime, Time.deltaTime);
+				InvokeRepeating("TryMerge", Time.deltaTime, Time.deltaTime);
 				
 				// Set merge state
 				state = MergeState.MERGING;
@@ -77,10 +77,10 @@ public class EnemyMerge : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Move towards enemy until with mergeDistance
+	/// Move towards enemy until within mergeDistance
 	/// (called via InvokeRepeating)
 	/// </summary>
-	void MoveTowardsEnemy()
+	void TryMerge()
 	{
 		// Check if reference to enemy is null
 		if(!mergeEnemy) {
@@ -95,11 +95,20 @@ public class EnemyMerge : MonoBehaviour
 			CancelInvoke();
 
 			// Merge with enemy if they haven't merged with us yet
-			if(!mergeEnemy.GetComponentInChildren<EnemyMerge>().state.Equals(MergeState.MERGED)) {
+			if(CanMerge(mergeEnemy.GetComponentInChildren<EnemyMerge>())) {
 				Merge();
 			}
 			
 		}
+	}
+
+	/// <summary>
+	/// Returns true if enemy hasn't merged yet
+	/// </summary>
+	/// <param name="enemy">Enemy's EnemyMerge component</param>
+	/// <returns></returns>
+	bool CanMerge(EnemyMerge enemy) {
+		return !enemy.state.Equals(MergeState.MERGED);
 	}
 
 	/// <summary>
