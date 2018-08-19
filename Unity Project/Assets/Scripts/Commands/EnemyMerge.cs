@@ -79,7 +79,7 @@ public class EnemyMerge : MonoBehaviour
 
 		if(WithinRange()) {
 			Debug.Log(transform.parent.name + " ready to merge with " + mergeEnemy.name);
-			CancelInvoke("MoveTowardsEnemy");
+			CancelInvoke();
 
 			// Merge with enemy if they haven't merged with us yet
 			if(!mergeEnemy.GetComponentInChildren<EnemyMerge>().merged) {
@@ -109,9 +109,9 @@ public class EnemyMerge : MonoBehaviour
 			Debug.Log(transform.parent.name + " - enemy merge could not be resolved; resulting enemy not determined");
 			return;
 		}
+		newEnemy.transform.position = mergeEnemy.transform.position;
 		newEnemy = Instantiate(newEnemy);
 		newEnemy.name = "New Enemy";
-		newEnemy.transform.position = mergeEnemy.transform.position;
 
 		merged = true;
 
