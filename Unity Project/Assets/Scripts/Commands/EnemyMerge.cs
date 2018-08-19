@@ -129,7 +129,11 @@ public class EnemyMerge : MonoBehaviour
 		newEnemy = Instantiate(newEnemy);
 		newEnemy.name = "New Enemy";
 
+		// Set our state to merged
 		state = MergeState.MERGED;
+
+		// Cancel invoked methods on other enemy before destroying
+		mergeEnemy.GetComponentInChildren<EnemyMerge>().CancelInvoke();
 
 		// Destroy both enemies
 		Destroy(mergeEnemy.gameObject);
