@@ -20,16 +20,6 @@ public class EnemyMerge : MonoBehaviour
 	Actor mergeEnemy;
 
 	/// <summary>
-	/// True if preparing to merge with another enemy
-	/// </summary>
-	public bool merging;
-
-	/// <summary>
-	/// True if have performed a merge with enemy (will be deleted next frame)
-	/// </summary>
-	public bool merged;
-
-	/// <summary>
 	/// Distance between enemies before they merge
 	/// </summary>
 	public float mergeDistance;
