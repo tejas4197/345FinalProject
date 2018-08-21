@@ -27,6 +27,16 @@ public class Actor : MonoBehaviour {
 	/// </summary>
 	public bool isPlayer;
 
+	/// <summary>
+	/// Game Controller
+	/// </summary>
+	public GameController gameController;
+
+	/// <summary>
+	/// Enemy Controller
+	/// </summary>
+	public EnemyController enemyController;
+
 	public Color color;
 
 	public enum Color {
@@ -38,5 +48,19 @@ public class Actor : MonoBehaviour {
 		MAGENTA,
 		YELLOW,
 		WHITE
+	}
+
+	void Start()
+	{
+		// Find controllers
+		gameController = GameObject.FindObjectOfType<GameController>();
+		enemyController = GameObject.FindObjectOfType<EnemyController>();
+
+		if(!gameController) {
+			Debug.LogWarning("Game controller missing from scene!");
+		}
+		if(!enemyController) {
+			Debug.LogWarning("Enemy controller missing from scene!");
+		}
 	}
 }
