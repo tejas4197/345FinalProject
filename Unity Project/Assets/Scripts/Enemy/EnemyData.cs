@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyData : MonoBehaviour {
+public static class EnemyData {
 
 	/// <summary>
 	/// Dictionary of compatible colors for merging
 	/// </summary>
-	public Dictionary<Actor.Color, List<Actor.Color>> mergeCompatible = new Dictionary<Actor.Color, List<Actor.Color>> {
+	public static Dictionary<Actor.Color, List<Actor.Color>> mergeCompatible = new Dictionary<Actor.Color, List<Actor.Color>> {
 		{ Actor.Color.RED, new List<Actor.Color>{Actor.Color.GREEN, Actor.Color.BLUE} },
 		{ Actor.Color.GREEN, new List<Actor.Color>{Actor.Color.RED, Actor.Color.BLUE} },
 		{ Actor.Color.BLUE, new List<Actor.Color>{Actor.Color.RED, Actor.Color.GREEN} },
@@ -17,7 +17,7 @@ public class EnemyData : MonoBehaviour {
 		{ Actor.Color.YELLOW, new List<Actor.Color>{Actor.Color.CYAN, Actor.Color.MAGENTA} },
 	};
 
-	public Dictionary<List<Actor.Color>, Actor.Color> mergeResult = new Dictionary<List<Actor.Color>, Actor.Color> {
+	public static Dictionary<List<Actor.Color>, Actor.Color> mergeResult = new Dictionary<List<Actor.Color>, Actor.Color> {
 		{ new List<Actor.Color>{Actor.Color.RED, Actor.Color.GREEN}, Actor.Color.YELLOW },
 		{ new List<Actor.Color>{Actor.Color.RED, Actor.Color.BLUE}, Actor.Color.MAGENTA },
 		{ new List<Actor.Color>{Actor.Color.GREEN, Actor.Color.BLUE}, Actor.Color.CYAN },
@@ -31,7 +31,7 @@ public class EnemyData : MonoBehaviour {
 	/// <param name="one"></param>
 	/// <param name="another"></param>
 	/// <returns></returns>
-	public bool CanMerge(Actor.Color one, Actor.Color another)
+	public static bool MergeCompatible(Actor.Color one, Actor.Color another)
 	{
 		if(mergeCompatible.ContainsKey(one) && mergeCompatible.ContainsKey(another))
 		{
@@ -41,9 +41,9 @@ public class EnemyData : MonoBehaviour {
 		return false;
 	}
 
-	public Actor.Color? MergeResult(Actor.Color one, Actor.Color another)
+	public static Actor.Color? MergeResult(Actor.Color one, Actor.Color another)
 	{
-		if(CanMerge(one, another)) {
+		if(MergeCompatible(one, another)) {
 			return mergeResult[new List<Actor.Color>{one, another}];
 		}
 		return null;

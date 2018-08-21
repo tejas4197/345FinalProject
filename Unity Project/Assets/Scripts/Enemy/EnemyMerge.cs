@@ -20,6 +20,11 @@ public class EnemyMerge : MonoBehaviour
 	Actor mergeEnemy;
 
 	/// <summary>
+	/// Reference to this enemy's Actor component (located in parent object)
+	/// </summary>
+	Actor thisEnemy;
+
+	/// <summary>
 	/// Distance between enemies before they merge
 	/// </summary>
 	public float mergeDistance;
@@ -42,6 +47,9 @@ public class EnemyMerge : MonoBehaviour
 
 		// Initialize merge state
 		state = MergeState.NOT_MERGING;
+
+		// Get reference to actor component
+		thisEnemy = GetComponentInParent<Actor>();
 	}
 	
 	/// <summary>
@@ -50,11 +58,18 @@ public class EnemyMerge : MonoBehaviour
 	/// <param name="other">The other Collider involved in this collision.</param>
 	void OnTriggerEnter(Collider other)
 	{
+		// Check if collided with actor
 		Actor actor = other.gameObject.GetComponentInParent<Actor>();
-		if(actor) {
-			// Debug.Log(name + " collided with actor: " + actor.name);
+		if(!actor) {
+			return;
+		}
 
-			if(!state.Equals(MergeState.MERGING) && !actor.isPlayer) {
+		// Check if within merge radius of enemy
+		if(!actor.isPlayer) {
+			Debug.Log(name + "(Color " + thisEnemy.color + ") in merge radius of actor: " + actor.name + "(Color " + actor.color + ")");
+
+			// Check if can merge with enemy
+			if(EnemyData.MergeCompatible(thisEnemy.color, actor.color) && !state.Equals(MergeState.MERGING)) {
 				mergeEnemy = actor;
 
 				Debug.Log(transform.parent.name + " moving towards " + mergeEnemy.name);
