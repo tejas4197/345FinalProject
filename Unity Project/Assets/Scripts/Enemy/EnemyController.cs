@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class EnemyData {
+public class EnemyController : MonoBehaviour 
+{
+	/// <summary>
+	/// List of enemy prefabs
+	/// </summary>
+	public List<Actor> enemyVariants;
 
 	/// <summary>
 	/// Dictionary of compatible colors for merging
@@ -31,21 +36,26 @@ public static class EnemyData {
 	/// <param name="one"></param>
 	/// <param name="another"></param>
 	/// <returns></returns>
-	public static bool MergeCompatible(Actor.Color one, Actor.Color another)
+	public static bool MergeCompatible(Actor one, Actor another)
 	{
-		if(mergeCompatible.ContainsKey(one) && mergeCompatible.ContainsKey(another))
+		if(mergeCompatible.ContainsKey(one.color) && mergeCompatible.ContainsKey(another.color))
 		{
-			return mergeCompatible[one].Contains(another);
+			return mergeCompatible[one.color].Contains(another.color);
 		}
 		// Returns false for black/white (not in dicitonary)
 		return false;
 	}
 
-	public static Actor.Color? MergeResult(Actor.Color one, Actor.Color another)
+	public static Actor.Color? MergeResult(Actor one, Actor another)
 	{
 		if(MergeCompatible(one, another)) {
-			return mergeResult[new List<Actor.Color>{one, another}];
+			return mergeResult[new List<Actor.Color>{one.color, another.color}];
 		}
 		return null;
+	}
+
+	public Actor SpawnEnemy(Actor.Color color)
+	{
+		return enemyVariants.Find(a => a.color == color);
 	}
 }

@@ -66,10 +66,10 @@ public class EnemyMerge : MonoBehaviour
 
 		// Check if within merge radius of enemy
 		if(!actor.isPlayer) {
-			Debug.Log(name + "(Color " + thisEnemy.color + ") in merge radius of actor: " + actor.name + "(Color " + actor.color + ")");
+			Debug.Log(thisEnemy.name + "(Color " + thisEnemy.color + ") in merge radius of actor: " + actor.name + "(Color " + actor.color + ")");
 
 			// Check if can merge with enemy
-			if(EnemyData.MergeCompatible(thisEnemy.color, actor.color) && !state.Equals(MergeState.MERGING)) {
+			if(EnemyController.MergeCompatible(thisEnemy, actor) && !state.Equals(MergeState.MERGING)) {
 				mergeEnemy = actor;
 
 				Debug.Log(transform.parent.name + " moving towards " + mergeEnemy.name);
@@ -132,6 +132,8 @@ public class EnemyMerge : MonoBehaviour
 	void Merge()
 	{
 		Debug.Log(transform.parent.name + " merging with " + mergeEnemy.name);
+
+		// Actor.Color? newEnemy = EnemyData.MergeResult(thisEnemy, mergeEnemy) ?? null;
 
 		if(!newEnemy) {
 			Debug.Log(transform.parent.name + " - enemy merge could not be resolved; resulting enemy not determined");
