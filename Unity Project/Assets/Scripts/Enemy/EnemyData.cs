@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyData : ScriptableObject {
+public class EnemyData : MonoBehaviour {
 
 	/// <summary>
 	/// Dictionary of compatible colors for merging
@@ -39,5 +39,13 @@ public class EnemyData : ScriptableObject {
 		}
 		// Returns false for black/white (not in dicitonary)
 		return false;
+	}
+
+	public Actor.Color? MergeResult(Actor.Color one, Actor.Color another)
+	{
+		if(CanMerge(one, another)) {
+			return mergeResult[new List<Actor.Color>{one, another}];
+		}
+		return null;
 	}
 }
