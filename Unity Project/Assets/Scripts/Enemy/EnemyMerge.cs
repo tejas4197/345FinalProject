@@ -47,6 +47,9 @@ public class EnemyMerge : MonoBehaviour
 
 		// Get reference to actor component
 		thisEnemy = GetComponentInParent<Actor>();
+
+		// Set position to parent
+		transform.localPosition = Vector3.zero;
 	}
 	
 	/// <summary>
@@ -101,7 +104,6 @@ public class EnemyMerge : MonoBehaviour
 
 		if(WithinRange()) {
 			Debug.Log(transform.parent.name + " ready to merge with " + mergeEnemy.name);
-			CancelInvoke();
 
 			// Merge with enemy if they haven't merged with us yet
 			if(CanMerge(mergeEnemy.GetComponentInChildren<EnemyMerge>())) {
@@ -144,7 +146,8 @@ public class EnemyMerge : MonoBehaviour
 			return;
 		}
 		
-		Debug.Log("Spawning " + newEnemy.color + " enemy");
+		Debug.Log(name + " | spawning " + newEnemy.color + " enemy");
+
 		// Spawn new enemy at current location
 		newEnemy.transform.position = mergeEnemy.transform.position;
 		newEnemy = Instantiate(newEnemy);
@@ -154,10 +157,11 @@ public class EnemyMerge : MonoBehaviour
 
 		Debug.Log("Spawned " + newEnemy.color + " enemy");
 
-		// Cancel invoked methods on other enemy before destroying
+		// Cancel invoked methods on self and other enemy before destroying
+		CancelInvoke();
 		mergeEnemy.GetComponentInChildren<EnemyMerge>().CancelInvoke();
 
-		// Destroy both enemies
+		// Destroy self and other enemy
 		Destroy(mergeEnemy.gameObject);
 		Destroy(transform.parent.gameObject);
 	}
