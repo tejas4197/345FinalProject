@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3104,6 +3104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1723412421}
   - component: {fileID: 1723412422}
+  - component: {fileID: 1723412423}
   m_Layer: 8
   m_Name: AttackRef
   m_TagString: Untagged
@@ -3143,6 +3144,22 @@ MonoBehaviour:
   atkCooldown: 0.4
   atkConeAngle: 120
   atkDamage: 100
+--- !u!114 &1723412423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1723412420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d1324a3df05c5c4f98ccbb0bf925711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paint: {fileID: 1133124241012202, guid: 8e1f0ba981cd2ac46904809afbbc8ee2, type: 2}
+  mainCamera: {fileID: 1704622625}
+  paintCooldown: 5
+  paintDuration: 5
+  paintSize: 5
 --- !u!1 &1841296642
 GameObject:
   m_ObjectHideFlags: 0
