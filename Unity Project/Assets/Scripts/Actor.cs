@@ -66,6 +66,7 @@ public class Actor : MonoBehaviour {
     public void TakeDamage(GameObject source, float damage)
     {
         health -= damage;
+        Debug.Log("Dealt damage to " + gameObject.name);
         if (health <= 0)
         {
             ColorModel colorToGive = gameObject.GetComponent<ColorModel>();

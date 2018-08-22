@@ -25,7 +25,8 @@ GameObject:
   - component: {fileID: 195434300798010610}
   - component: {fileID: 114352810765857522}
   - component: {fileID: 114109637571028014}
-  m_Layer: 0
+  - component: {fileID: 114219684234477152}
+  m_Layer: 8
   m_Name: RedEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -70,7 +71,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1067485812363106}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.654218, y: 18.20052, z: 6.7879868}
+  m_LocalPosition: {x: -21.8, y: 1.134388, z: -16.23797}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4480718984230338}
@@ -92,7 +93,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: bbfcfb4dfb29d41b8832f84430c91ded, type: 2}
+  - {fileID: 2100000, guid: e764118cd7780aa4da886d522df2232a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -159,6 +160,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   target: {fileID: 0}
+--- !u!114 &114219684234477152
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1067485812363106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f67bdd6f5cdd2943a95be6a4790e10f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Red: 50
+  Green: 0
+  Blue: 0
+  Cyan: 0
+  Yellow: 0
+  Magenta: 0
+  White: 0
 --- !u!114 &114352810765857522
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -172,6 +191,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   isPlayer: 0
+  gameController: {fileID: 0}
+  enemyController: {fileID: 0}
   color: 1
 --- !u!114 &114632807672401856
 MonoBehaviour:
@@ -185,8 +206,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  mergeEnemy: {fileID: 0}
+  thisEnemy: {fileID: 0}
   mergeDistance: 1.5
-  newEnemy: {fileID: 114121202167914928, guid: 2f70465bd9785a34ca9d03f9d271c747, type: 2}
 --- !u!135 &135940854832738116
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -209,7 +231,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.75
   m_Speed: 5
-  m_Acceleration: 8
+  m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0

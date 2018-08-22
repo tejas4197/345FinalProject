@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour {
+public class PlayerAttack : MonoBehaviour
+{
 
     public Camera mainCamera;
     public ParticleSystem atkParticles;
@@ -20,21 +21,21 @@ public class PlayerAttack : MonoBehaviour {
     int layerMask;
     List<GameObject> hitThisAttack;
 
-	void Start ()
+    void Start()
     {
         // Ignore collisions on every layer except layer 9 (background layer)
         layerMask = 1 << 9;
 
         timer = atkCooldown;
         hitThisAttack = new List<GameObject>();
-	}
-	
-	void Update ()
+    }
+
+    void Update()
     {
         // Keep timer up to date
         timer += Time.deltaTime;
 
-	    if (Input.GetKey(KeyCode.Mouse0) && timer >= atkCooldown)
+        if (Input.GetKey(KeyCode.Mouse0) && timer >= atkCooldown)
         {
             // Raycast from mouse to background layer
             mouseRay = mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -44,7 +45,6 @@ public class PlayerAttack : MonoBehaviour {
                 atkVector = rayHit.point - gameObject.transform.position;
                 atkVector.Normalize();
                 atkVector *= atkRange;
-                Debug.DrawRay(gameObject.transform.position, atkVector, Color.red);
 
                 //Instantiate attack particle
                 currAtkParticles = Instantiate(atkParticles, gameObject.transform, false);
@@ -55,7 +55,7 @@ public class PlayerAttack : MonoBehaviour {
 
             timer = 0;
         }
-	}
+    }
 
     IEnumerator Attack()
     {
@@ -65,9 +65,10 @@ public class PlayerAttack : MonoBehaviour {
             currAtkParticles.transform.RotateAround(gameObject.transform.position, Vector3.up, -atkConeAngle / (atkSpeed / Time.deltaTime));
 
             // Check if enemies are hit
-            if (Physics.Linecast(gameObject.transform.position, currAtkParticles.transform.position, out lineHit))
+            Debug.DrawLine(gameObject.transform.position, currAtkParticles.transform.position);
+            if (Physics.Linecast(gameObject.transform.position, currAtkParticles.transform.position, out lineHit, 1 << 8))
             {
-               GameObject objectHit = lineHit.collider.gameObject;
+                GameObject objectHit = lineHit.collider.gameObject;
                 if (objectHit.tag.Equals("Enemy"))
                 {
                     if (!hitThisAttack.Contains(objectHit))

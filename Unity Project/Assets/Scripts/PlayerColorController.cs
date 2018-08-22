@@ -25,9 +25,4 @@ public class PlayerColorController : MonoBehaviour {
     #endregion
 
     public ColorModel Color { get; set; }
-
-    public void Update()
-    {
-        Debug.Log("nothing");
-    }
 }
