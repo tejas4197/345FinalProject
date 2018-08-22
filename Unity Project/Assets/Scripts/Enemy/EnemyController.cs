@@ -12,17 +12,20 @@ public class EnemyController : MonoBehaviour
 	
 	public static Dictionary<Actor.Color, Dictionary<Actor.Color, Actor.Color>> mergeDict = new Dictionary<Actor.Color, Dictionary<Actor.Color, Actor.Color>> {
 		{ Actor.Color.RED, 
+            // RED can merge with key to form value
 			new Dictionary<Actor.Color, Actor.Color> {
 				{Actor.Color.GREEN, Actor.Color.YELLOW},
 				{Actor.Color.BLUE, Actor.Color.MAGENTA}
 			} 
 		},
+        // GREEN can merge with key to form value
 		{ Actor.Color.GREEN, 
 			new Dictionary<Actor.Color, Actor.Color> {
 				{Actor.Color.RED, Actor.Color.YELLOW},
 				{Actor.Color.BLUE, Actor.Color.CYAN}
 			} 
 		},
+        // BLUE can merge with key to form value
 		{ Actor.Color.BLUE, 
 			new Dictionary<Actor.Color, Actor.Color> {
 				{Actor.Color.GREEN, Actor.Color.CYAN},
@@ -60,7 +63,7 @@ public class EnemyController : MonoBehaviour
 	{
 		// Get merge result
 		Actor.Color? resultColor = MergeResult(one, another);
-		Debug.Log("Getting merge result for colors (" + one.color + ", " + another.color + "): " + resultColor);
+        GameController.Log("Getting merge result for colors (" + one.color + ", " + another.color + "): " + resultColor, GameController.LogMerge);
 
 
 		// Check if valid merge before returning enemy
@@ -68,7 +71,7 @@ public class EnemyController : MonoBehaviour
 			return enemyVariants.Find(a => a.color == resultColor);
 		}
 
-		Debug.LogWarning(name + " | Invalid merge attempted with " + one.name + " and " + another.name);
+		GameController.LogWarning(name + " | Invalid merge attempted with " + one.name + " and " + another.name, GameController.LogMerge);
 		return null;
 	}
 }

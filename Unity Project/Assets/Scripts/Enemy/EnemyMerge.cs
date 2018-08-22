@@ -35,7 +35,7 @@ public class EnemyMerge : MonoBehaviour
 	{
 		SphereCollider mergeBounds = GetComponent<SphereCollider>();
 		if(!mergeBounds) {
-			GameController.LogWarning("Merge collider not found for " + name + ": please add a SphereCollider to a child of this GameObject");
+			GameController.LogWarning("Merge collider not found for " + name + ": please add a SphereCollider to a child of this GameObject", GameController.LogMerge);
 			return;
 		}
 
@@ -67,15 +67,15 @@ public class EnemyMerge : MonoBehaviour
 		// Check if within merge radius of enemy
 		if(!actor.isPlayer) {
 			if(!thisEnemy) {
-				Debug.LogWarning("ERROR: Reference to actor on " + transform.parent.name + " not found");
+				GameController.LogWarning("ERROR: Reference to actor on " + transform.parent.name + " not found", GameController.LogMerge);
 			}
-			Debug.Log(thisEnemy.name + "(Color " + thisEnemy.color + ") in merge radius of actor: " + actor.name + "(Color " + actor.color + ")");
+            GameController.Log(thisEnemy.name + "(Color " + thisEnemy.color + ") in merge radius of actor: " + actor.name + "(Color " + actor.color + ")", GameController.LogMerge);
 
 			// Check if can merge with enemy
 			if(EnemyController.MergeCompatible(thisEnemy, actor) && !state.Equals(MergeState.MERGING)) {
 				mergeEnemy = actor;
 
-				Debug.Log(transform.parent.name + " moving towards " + mergeEnemy.name);
+                GameController.Log(transform.parent.name + " moving towards " + mergeEnemy.name, GameController.LogMerge);
 				InvokeRepeating("TryMerge", Time.deltaTime, Time.deltaTime);
 				
 				// Set merge state
@@ -92,7 +92,7 @@ public class EnemyMerge : MonoBehaviour
 	{
 		// Check if reference to enemy is null
 		if(!mergeEnemy) {
-			GameController.LogWarning(transform.parent.name + " - merge target not found, canceling merge");
+			GameController.LogWarning(transform.parent.name + " - merge target not found, canceling merge", GameController.LogMerge);
 
 			// Revert to merge-seeking state
 			CancelInvoke();
@@ -103,7 +103,7 @@ public class EnemyMerge : MonoBehaviour
 		mergeEnemy.GetComponent<NavMeshAgent>().SetDestination(transform.parent.position);
 
 		if(WithinRange()) {
-			Debug.Log(transform.parent.name + " ready to merge with " + mergeEnemy.name);
+            GameController.Log(transform.parent.name + " ready to merge with " + mergeEnemy.name, GameController.LogMerge);
 
 			// Merge with enemy if they haven't merged with us yet
 			if(CanMerge(mergeEnemy.GetComponentInChildren<EnemyMerge>())) {
@@ -137,16 +137,16 @@ public class EnemyMerge : MonoBehaviour
 
 	void Merge()
 	{
-		Debug.Log(transform.parent.name + " merging with " + mergeEnemy.name);
+        GameController.Log(transform.parent.name + " merging with " + mergeEnemy.name, GameController.LogMerge);
 
 		Actor newEnemy = thisEnemy.enemyController.Merge(thisEnemy, mergeEnemy);
 
 		if(!newEnemy) {
-			Debug.LogWarning(transform.parent.name + " - enemy merge could not be resolved; resulting enemy not determined");
+            GameController.LogWarning(transform.parent.name + " - enemy merge could not be resolved; resulting enemy not determined", GameController.LogMerge);
 			return;
 		}
-		
-		Debug.Log(name + " | spawning " + newEnemy.color + " enemy");
+
+        GameController.Log(name + " | spawning " + newEnemy.color + " enemy", GameController.LogMerge);
 
 		// Spawn new enemy at current location
 		newEnemy.transform.position = mergeEnemy.transform.position;
@@ -155,7 +155,7 @@ public class EnemyMerge : MonoBehaviour
 		// Set our state to merged
 		state = MergeState.MERGED;
 
-		Debug.Log("Spawned " + newEnemy.color + " enemy");
+        GameController.Log("Spawned " + newEnemy.color + " enemy", GameController.LogMerge);
 
 		// Cancel invoked methods on self and other enemy before destroying
 		CancelInvoke();

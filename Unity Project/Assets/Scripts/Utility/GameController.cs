@@ -21,21 +21,21 @@ messages logged through that logger; this allows developers to filter out unrela
 public class GameController : MonoBehaviour {
 	[Header("Loggers")]
     /// <summary>
-    /// Physics logs will display in console if true
+    /// Color logs will display in console if true
     /// </summary>
-	public bool logPhysics;
+	public bool logColor;
     
     /// <summary>
-    /// Command logs will display in console if true
+    /// Merge logs will display in console if true
     /// </summary>
-    public bool logCommand;
+    public bool logMerge;
 
 	void Start()
 	{
         // Add LogHelper mapping here for each logger
         loggers = new Dictionary<LogHelper, bool>() {
-            { LogPhysics, logPhysics },
-            { LogCommands, logCommand }
+            { LogColor, logColor },
+            { LogMerge, logMerge }
         };
 
         // Initialize each logger
@@ -92,12 +92,12 @@ public class GameController : MonoBehaviour {
 	/// <summary>
 	/// Physics logger
 	/// </summary>
-	public static LogHelper LogPhysics = new LogHelper();
+	public static LogHelper LogColor = new LogHelper();
 
     // Ideally this should allow filtering by Command and Actor executing it
     /// <summary>
     /// Command logger
     /// </summary>
-    public static LogHelper LogCommands = new LogHelper();
+    public static LogHelper LogMerge = new LogHelper();
 
 }
