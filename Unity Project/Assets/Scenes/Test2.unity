@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1521,6 +1521,7 @@ GameObject:
   - component: {fileID: 778928694}
   - component: {fileID: 778928693}
   - component: {fileID: 778928692}
+  - component: {fileID: 778928699}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -1643,6 +1644,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &778928699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 778928691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 486a638d26c1dd4489986479dc77a270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &792420659
 GameObject:
   m_ObjectHideFlags: 0
@@ -2314,26 +2326,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1076951540
+--- !u!1 &1126724073 stripped
 GameObject:
+  m_PrefabParentObject: {fileID: 1555980182350622, guid: 2b5810cb4dc9ef54ba7c3ad5e8e99079,
+    type: 2}
+  m_PrefabInternal: {fileID: 1584151190}
+--- !u!114 &1126724080
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 1989087818}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1574543924}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1141690131 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4147112190764682, guid: ede2540a420b446248e5512e22697363,
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1126724073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f67bdd6f5cdd2943a95be6a4790e10f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Red: 0
+  Green: 0
+  Blue: 50
+  Cyan: 0
+  Yellow: 0
+  Magenta: 0
+  White: 0
+--- !u!1 &1143197395 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1067485812363106, guid: f5066ab4d31155a468c2ab0afe211aa6,
     type: 2}
-  m_PrefabInternal: {fileID: 1886502819}
+  m_PrefabInternal: {fileID: 1216880013}
+--- !u!114 &1143197402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1143197395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f67bdd6f5cdd2943a95be6a4790e10f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Red: 50
+  Green: 0
+  Blue: 0
+  Cyan: 0
+  Yellow: 0
+  Magenta: 0
+  White: 0
 --- !u!1 &1184586617
 GameObject:
   m_ObjectHideFlags: 0
@@ -3290,6 +3328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1723412421}
   - component: {fileID: 1723412422}
+  - component: {fileID: 1723412423}
   m_Layer: 8
   m_Name: AttackRef
   m_TagString: Untagged
@@ -3329,48 +3368,22 @@ MonoBehaviour:
   atkCooldown: 0.4
   atkConeAngle: 120
   atkDamage: 100
---- !u!1001 &1828701840
-Prefab:
+--- !u!114 &1723412423
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1679934279}
-    m_Modifications:
-    - target: {fileID: 4077331221962550, guid: f07d4ea84e52c514a9a49eb622965e6a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -25.652111
-      objectReference: {fileID: 0}
-    - target: {fileID: 4077331221962550, guid: f07d4ea84e52c514a9a49eb622965e6a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1.1030407
-      objectReference: {fileID: 0}
-    - target: {fileID: 4077331221962550, guid: f07d4ea84e52c514a9a49eb622965e6a, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -17.23018
-      objectReference: {fileID: 0}
-    - target: {fileID: 4077331221962550, guid: f07d4ea84e52c514a9a49eb622965e6a, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4077331221962550, guid: f07d4ea84e52c514a9a49eb622965e6a, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4077331221962550, guid: f07d4ea84e52c514a9a49eb622965e6a, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4077331221962550, guid: f07d4ea84e52c514a9a49eb622965e6a, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4077331221962550, guid: f07d4ea84e52c514a9a49eb622965e6a, type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f07d4ea84e52c514a9a49eb622965e6a, type: 2}
-  m_IsPrefabParent: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1723412420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d1324a3df05c5c4f98ccbb0bf925711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paint: {fileID: 1133124241012202, guid: 8e1f0ba981cd2ac46904809afbbc8ee2, type: 2}
+  mainCamera: {fileID: 1704622625}
+  paintCooldown: 5
+  paintDuration: 5
+  paintSize: 5
 --- !u!1 &1841296642
 GameObject:
   m_ObjectHideFlags: 0
@@ -4052,3 +4065,26 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2096461282}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2123774577 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1067485812363106, guid: a43fe3d1d026d7d40830f0c84f00c9f3,
+    type: 2}
+  m_PrefabInternal: {fileID: 1989087818}
+--- !u!114 &2123774578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2123774577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f67bdd6f5cdd2943a95be6a4790e10f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Red: 0
+  Green: 50
+  Blue: 0
+  Cyan: 0
+  Yellow: 0
+  Magenta: 0
+  White: 0
