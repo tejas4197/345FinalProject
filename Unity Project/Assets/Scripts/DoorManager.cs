@@ -44,16 +44,13 @@ public class DoorManager : MonoBehaviour {
     /// <summary>
     /// List of doors
     /// </summary>
-    public List<Door> doors;
+    public Door door;
 
     public void CheckDoors()
     {
-        // Iterate over all doors and check if we can unlock them
-        foreach(Door door in doors.FindAll(d => !d.isUnlocked)) {
-            if (PlayerColorController.Instance.Color >= new ColorModel(door.redThreshold, door.greenThreshold, door.blueThreshold)) {
-                door.doorObject.SetActive(false);
-                door.isUnlocked = true;
-            }
+        if (PlayerColorController.Instance.Color >= new ColorModel(door.redThreshold, door.greenThreshold, door.blueThreshold)) {
+            door.doorObject.SetActive(false);
+            door.isUnlocked = true;
         }
     }
 }
