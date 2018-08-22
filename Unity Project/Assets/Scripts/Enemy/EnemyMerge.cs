@@ -17,22 +17,19 @@ public class EnemyMerge : MonoBehaviour
 	/// <summary>
 	/// Enemy to merge with
 	/// </summary>
-	Actor mergeEnemy;
+	public Actor mergeEnemy;
 
 	/// <summary>
 	/// Reference to this enemy's Actor component (located in parent object)
 	/// </summary>
-	Actor thisEnemy;
+	public Actor thisEnemy;
 
 	/// <summary>
 	/// Distance between enemies before they merge
 	/// </summary>
 	public float mergeDistance;
 
-	/// <summary>
-	/// Enemy spawned via merge
-	/// </summary>
-	public Actor newEnemy;
+	EnemyController enemyController;
 
 	void Start () 
 	{
@@ -66,6 +63,9 @@ public class EnemyMerge : MonoBehaviour
 
 		// Check if within merge radius of enemy
 		if(!actor.isPlayer) {
+			if(!thisEnemy) {
+				Debug.LogWarning("ERROR: Reference to actor on " + transform.parent.name + " not found");
+			}
 			Debug.Log(thisEnemy.name + "(Color " + thisEnemy.color + ") in merge radius of actor: " + actor.name + "(Color " + actor.color + ")");
 
 			// Check if can merge with enemy
@@ -89,7 +89,11 @@ public class EnemyMerge : MonoBehaviour
 	{
 		// Check if reference to enemy is null
 		if(!mergeEnemy) {
-			GameController.LogWarning(transform.parent.name + " - attempting to merge with enemy without reference");
+			GameController.LogWarning(transform.parent.name + " - merge target not found, canceling merge");
+
+			// Revert to merge-seeking state
+			CancelInvoke();
+			state = MergeState.NOT_MERGING;
 			return;
 		}
 		// Move towards enemy
@@ -133,20 +137,22 @@ public class EnemyMerge : MonoBehaviour
 	{
 		Debug.Log(transform.parent.name + " merging with " + mergeEnemy.name);
 
-		// Actor.Color? newEnemy = EnemyData.MergeResult(thisEnemy, mergeEnemy) ?? null;
+		Actor newEnemy = thisEnemy.enemyController.Merge(thisEnemy, mergeEnemy);
 
 		if(!newEnemy) {
-			Debug.Log(transform.parent.name + " - enemy merge could not be resolved; resulting enemy not determined");
+			Debug.LogWarning(transform.parent.name + " - enemy merge could not be resolved; resulting enemy not determined");
 			return;
 		}
 		
+		Debug.Log("Spawning " + newEnemy.color + " enemy");
 		// Spawn new enemy at current location
 		newEnemy.transform.position = mergeEnemy.transform.position;
 		newEnemy = Instantiate(newEnemy);
-		newEnemy.name = "New Enemy";
 
 		// Set our state to merged
 		state = MergeState.MERGED;
+
+		Debug.Log("Spawned " + newEnemy.color + " enemy");
 
 		// Cancel invoked methods on other enemy before destroying
 		mergeEnemy.GetComponentInChildren<EnemyMerge>().CancelInvoke();

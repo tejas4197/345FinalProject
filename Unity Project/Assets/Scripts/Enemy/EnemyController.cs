@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class EnemyController : MonoBehaviour 
 {
@@ -8,26 +9,26 @@ public class EnemyController : MonoBehaviour
 	/// List of enemy prefabs
 	/// </summary>
 	public List<Actor> enemyVariants;
-
-	/// <summary>
-	/// Dictionary of compatible colors for merging
-	/// </summary>
-	public static Dictionary<Actor.Color, List<Actor.Color>> mergeCompatible = new Dictionary<Actor.Color, List<Actor.Color>> {
-		{ Actor.Color.RED, new List<Actor.Color>{Actor.Color.GREEN, Actor.Color.BLUE} },
-		{ Actor.Color.GREEN, new List<Actor.Color>{Actor.Color.RED, Actor.Color.BLUE} },
-		{ Actor.Color.BLUE, new List<Actor.Color>{Actor.Color.RED, Actor.Color.GREEN} },
-
-		{ Actor.Color.CYAN, new List<Actor.Color>{Actor.Color.MAGENTA, Actor.Color.YELLOW} },
-		{ Actor.Color.MAGENTA, new List<Actor.Color>{Actor.Color.CYAN, Actor.Color.YELLOW} },
-		{ Actor.Color.YELLOW, new List<Actor.Color>{Actor.Color.CYAN, Actor.Color.MAGENTA} },
-	};
-
-	public static Dictionary<List<Actor.Color>, Actor.Color> mergeResult = new Dictionary<List<Actor.Color>, Actor.Color> {
-		{ new List<Actor.Color>{Actor.Color.RED, Actor.Color.GREEN}, Actor.Color.YELLOW },
-		{ new List<Actor.Color>{Actor.Color.RED, Actor.Color.BLUE}, Actor.Color.MAGENTA },
-		{ new List<Actor.Color>{Actor.Color.GREEN, Actor.Color.BLUE}, Actor.Color.CYAN },
-
-		{ new List<Actor.Color>{Actor.Color.CYAN, Actor.Color.MAGENTA, Actor.Color.YELLOW}, Actor.Color.WHITE },
+	
+	public static Dictionary<Actor.Color, Dictionary<Actor.Color, Actor.Color>> mergeDict = new Dictionary<Actor.Color, Dictionary<Actor.Color, Actor.Color>> {
+		{ Actor.Color.RED, 
+			new Dictionary<Actor.Color, Actor.Color> {
+				{Actor.Color.GREEN, Actor.Color.YELLOW},
+				{Actor.Color.BLUE, Actor.Color.MAGENTA}
+			} 
+		},
+		{ Actor.Color.GREEN, 
+			new Dictionary<Actor.Color, Actor.Color> {
+				{Actor.Color.RED, Actor.Color.YELLOW},
+				{Actor.Color.BLUE, Actor.Color.CYAN}
+			} 
+		},
+		{ Actor.Color.BLUE, 
+			new Dictionary<Actor.Color, Actor.Color> {
+				{Actor.Color.GREEN, Actor.Color.CYAN},
+				{Actor.Color.RED, Actor.Color.MAGENTA}
+			} 
+		}
 	};
 
 	/// <summary>
@@ -38,9 +39,9 @@ public class EnemyController : MonoBehaviour
 	/// <returns></returns>
 	public static bool MergeCompatible(Actor one, Actor another)
 	{
-		if(mergeCompatible.ContainsKey(one.color) && mergeCompatible.ContainsKey(another.color))
+		if(mergeDict.ContainsKey(one.color))
 		{
-			return mergeCompatible[one.color].Contains(another.color);
+			return mergeDict[one.color].ContainsKey(another.color);
 		}
 		// Returns false for black/white (not in dicitonary)
 		return false;
@@ -49,13 +50,25 @@ public class EnemyController : MonoBehaviour
 	public static Actor.Color? MergeResult(Actor one, Actor another)
 	{
 		if(MergeCompatible(one, another)) {
-			return mergeResult[new List<Actor.Color>{one.color, another.color}];
+			return mergeDict[one.color][another.color];
+
 		}
 		return null;
 	}
 
-	public Actor SpawnEnemy(Actor.Color color)
+	public Actor Merge(Actor one, Actor another)
 	{
-		return enemyVariants.Find(a => a.color == color);
+		// Get merge result
+		Actor.Color? resultColor = MergeResult(one, another);
+		Debug.Log("Getting merge result for colors (" + one.color + ", " + another.color + "): " + resultColor);
+
+
+		// Check if valid merge before returning enemy
+		if(resultColor != null) {
+			return enemyVariants.Find(a => a.color == resultColor);
+		}
+
+		Debug.LogWarning(name + " | Invalid merge attempted with " + one.name + " and " + another.name);
+		return null;
 	}
 }
