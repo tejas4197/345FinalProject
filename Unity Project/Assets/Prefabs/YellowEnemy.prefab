@@ -57,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1555980182350622}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.1, y: 1.134388, z: -16.23797}
+  m_LocalPosition: {x: 11.760368, y: 27.203629, z: -16.16934}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4221551643964276}
@@ -159,6 +159,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   isPlayer: 0
+  gameController: {fileID: 0}
+  enemyController: {fileID: 0}
   color: 6
 --- !u!114 &114532113625015594
 MonoBehaviour:
@@ -185,8 +187,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  mergeEnemy: {fileID: 0}
+  thisEnemy: {fileID: 0}
   mergeDistance: 1.5
-  newEnemy: {fileID: 114121202167914928, guid: 2f70465bd9785a34ca9d03f9d271c747, type: 2}
 --- !u!135 &135462909745670796
 SphereCollider:
   m_ObjectHideFlags: 1
