@@ -600,8 +600,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91293074c9fb64a87a486d7bd2356c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  logPhysics: 1
-  logCommand: 1
+  logColor: 1
+  logMerge: 0
 --- !u!114 &440252627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1333,10 +1333,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bab1686250cd7c4db862838f10ab813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstDoor: {fileID: 695472527}
-  firstConditionRed: 50
-  firstConditionGreen: 50
-  firstConditionBlue: 50
+  firstDoor: {fileID: 0}
+  firstConditionRed: 0
+  firstConditionGreen: 0
+  firstConditionBlue: 0
+  doors:
+  - doorObject: {fileID: 695472527}
+    isUnlocked: 0
+    redThreshold: 25
+    greenThreshold: 25
+    blueThreshold: 25
 --- !u!4 &694264828
 Transform:
   m_ObjectHideFlags: 0

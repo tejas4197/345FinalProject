@@ -28,16 +28,32 @@ public class DoorManager : MonoBehaviour {
     public float firstConditionGreen;
     public float firstConditionBlue;
 
-    public void CheckDoors()
-    {
-        CheckFirstDoor();
+    [System.Serializable]
+    public class Door {
+        /// <summary>
+        /// Reference to door object
+        /// </summary>
+        public GameObject doorObject;
+        public bool isUnlocked;
+
+        public float redThreshold;
+        public float greenThreshold;
+        public float blueThreshold;
     }
 
-    private void CheckFirstDoor()
+    /// <summary>
+    /// List of doors
+    /// </summary>
+    public List<Door> doors;
+
+    public void CheckDoors()
     {
-        if (PlayerColorController.Instance.Color >= new ColorModel(firstConditionRed, firstConditionGreen, firstConditionBlue))
-        {
-            Destroy(firstDoor);
+        // Iterate over all doors and check if we can unlock them
+        foreach(Door door in doors.FindAll(d => !d.isUnlocked)) {
+            if (PlayerColorController.Instance.Color >= new ColorModel(door.redThreshold, door.greenThreshold, door.blueThreshold)) {
+                door.doorObject.SetActive(false);
+                door.isUnlocked = true;
+            }
         }
     }
 }
