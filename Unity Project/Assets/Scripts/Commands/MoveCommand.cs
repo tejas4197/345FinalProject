@@ -30,7 +30,7 @@ public class MoveCommand : Command {
         }
         else
         {
-            GameController.LogWarning("Unable to execute MoveCommand on " + name + " - no MoveComponent found", GameController.LogCommands);
+            GameController.LogWarning("Unable to execute MoveCommand on " + name + " - no MoveComponent found");
         }
         
 	}
