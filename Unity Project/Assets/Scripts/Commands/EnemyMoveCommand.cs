@@ -19,8 +19,6 @@ public class EnemyMoveCommand : Command {
 
     void Update ()
 	{
-        GameController.Log(name + " moving towards " + target.name);
-
 		if(!navComponent) {
 			navComponent = GetComponent<NavMeshAgent>();
 		}
