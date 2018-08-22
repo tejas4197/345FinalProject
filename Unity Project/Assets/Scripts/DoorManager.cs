@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerColorController : MonoBehaviour {
+public class DoorManager : MonoBehaviour {
 
     #region Singleton
-    public static PlayerColorController Instance { get; private set; }
+    public static DoorManager Instance { get; private set; }
 
     //If an instance of this singleton exists, then destroy the gameobject (this means there are more than one)
     //If an instance doesn't exist, create one
@@ -19,20 +19,25 @@ public class PlayerColorController : MonoBehaviour {
         else
         {
             Instance = this;
-            Instance.Color = new ColorModel();
         }
     }
     #endregion
 
-    private ColorModel _color;
+    public GameObject firstDoor;
+    public float firstConditionRed;
+    public float firstConditionGreen;
+    public float firstConditionBlue;
 
-    public ColorModel Color
+    public void CheckDoors()
     {
-        get { return _color; }
-        set
+        CheckFirstDoor();
+    }
+
+    private void CheckFirstDoor()
+    {
+        if (PlayerColorController.Instance.Color >= new ColorModel(firstConditionRed, firstConditionGreen, firstConditionBlue))
         {
-            _color = value;
-            DoorManager.Instance.CheckDoors();
+            Destroy(firstDoor);
         }
     }
 }
