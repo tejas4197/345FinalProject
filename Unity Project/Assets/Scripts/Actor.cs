@@ -26,4 +26,19 @@ public class Actor : MonoBehaviour {
 	/// True if actor is player character
 	/// </summary>
 	public bool isPlayer;
+
+    public void TakeDamage(GameObject source, float damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            ColorModel colorToGive = gameObject.GetComponent<ColorModel>();
+            Destroy(gameObject);
+
+            if (colorToGive != null)
+                PlayerColorController.Instance.Color += colorToGive;
+            else
+                Debug.Log("Warning: destroyed object that did not have a ColorModel.");
+        }
+    }
 }

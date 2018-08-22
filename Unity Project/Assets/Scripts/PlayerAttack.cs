@@ -72,7 +72,7 @@ public class PlayerAttack : MonoBehaviour {
                 {
                     if (!hitThisAttack.Contains(objectHit))
                     {
-                        objectHit.GetComponent<Actor>().health -= atkDamage;
+                        objectHit.GetComponent<Actor>().TakeDamage(gameObject, atkDamage);
                         hitThisAttack.Add(objectHit);
                     }
                 }
