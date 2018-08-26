@@ -300,6 +300,16 @@ Prefab:
       propertyPath: m_Name
       value: Spawner (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 114293104292125896, guid: f98bb19f62db9084a9e1a80d70975fa1,
+        type: 2}
+      propertyPath: settings.minSpawnTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114293104292125896, guid: f98bb19f62db9084a9e1a80d70975fa1,
+        type: 2}
+      propertyPath: settings.maxSpawnTime
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f98bb19f62db9084a9e1a80d70975fa1, type: 2}
   m_IsPrefabParent: 0
@@ -1890,6 +1900,16 @@ Prefab:
       propertyPath: m_Name
       value: Spawner (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114293104292125896, guid: f98bb19f62db9084a9e1a80d70975fa1,
+        type: 2}
+      propertyPath: settings.minSpawnTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114293104292125896, guid: f98bb19f62db9084a9e1a80d70975fa1,
+        type: 2}
+      propertyPath: settings.maxSpawnTime
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f98bb19f62db9084a9e1a80d70975fa1, type: 2}
   m_IsPrefabParent: 0
@@ -2618,6 +2638,16 @@ Prefab:
       propertyPath: surface
       value: 
       objectReference: {fileID: 649850289}
+    - target: {fileID: 114293104292125896, guid: f98bb19f62db9084a9e1a80d70975fa1,
+        type: 2}
+      propertyPath: settings.minSpawnTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114293104292125896, guid: f98bb19f62db9084a9e1a80d70975fa1,
+        type: 2}
+      propertyPath: settings.maxSpawnTime
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f98bb19f62db9084a9e1a80d70975fa1, type: 2}
   m_IsPrefabParent: 0
@@ -2810,6 +2840,16 @@ Prefab:
     - target: {fileID: 1549874769475544, guid: f98bb19f62db9084a9e1a80d70975fa1, type: 2}
       propertyPath: m_Name
       value: Spawner (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114293104292125896, guid: f98bb19f62db9084a9e1a80d70975fa1,
+        type: 2}
+      propertyPath: settings.minSpawnTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114293104292125896, guid: f98bb19f62db9084a9e1a80d70975fa1,
+        type: 2}
+      propertyPath: settings.maxSpawnTime
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f98bb19f62db9084a9e1a80d70975fa1, type: 2}
@@ -4145,6 +4185,16 @@ Prefab:
     - target: {fileID: 1549874769475544, guid: f98bb19f62db9084a9e1a80d70975fa1, type: 2}
       propertyPath: m_Name
       value: Spawner (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114293104292125896, guid: f98bb19f62db9084a9e1a80d70975fa1,
+        type: 2}
+      propertyPath: settings.minSpawnTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114293104292125896, guid: f98bb19f62db9084a9e1a80d70975fa1,
+        type: 2}
+      propertyPath: settings.maxSpawnTime
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f98bb19f62db9084a9e1a80d70975fa1, type: 2}
