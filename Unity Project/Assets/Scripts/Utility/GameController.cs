@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 /*
 
@@ -30,16 +31,27 @@ public class GameController : MonoBehaviour {
     /// </summary>
     public bool logMerge;
 
+    /// <summary>
+    /// Spawner logs will display in console if true
+    /// </summary>
+    public bool logSpawners;
+
+    public NavMeshSurface navSurface;
+
 	void Start()
 	{
         // Add LogHelper mapping here for each logger
         loggers = new Dictionary<LogHelper, bool>() {
             { LogColor, logColor },
-            { LogMerge, logMerge }
+            { LogMerge, logMerge },
+            { LogSpawner, logSpawners }
         };
 
         // Initialize each logger
         InitializeLoggers();
+
+        // Build NavMeshSurface
+        navSurface.BuildNavMesh();
 	}
 
     /// <summary>
@@ -94,10 +106,14 @@ public class GameController : MonoBehaviour {
 	/// </summary>
 	public static LogHelper LogColor = new LogHelper();
 
-    // Ideally this should allow filtering by Command and Actor executing it
     /// <summary>
-    /// Command logger
+    /// Merge logger
     /// </summary>
     public static LogHelper LogMerge = new LogHelper();
+
+    /// <summary>
+    /// Spawner logger
+    /// </summary>
+    public static LogHelper LogSpawner = new LogHelper();
 
 }

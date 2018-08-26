@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using System.Linq;
 
 public class EnemyController : MonoBehaviour 
@@ -9,6 +10,15 @@ public class EnemyController : MonoBehaviour
 	/// List of enemy prefabs
 	/// </summary>
 	public List<Actor> enemyVariants;
+
+    /// <summary>
+    /// Returns enemy prefab corresponding to given color
+    /// </summary>
+    /// <param name="color">Enemy color</param>
+    public Actor GetEnemyPrefab(Actor.Color? color)
+    {
+        return enemyVariants.Find(a => a.color.Equals(color));
+    }
 	
 	public static Dictionary<Actor.Color, Dictionary<Actor.Color, Actor.Color>> mergeDict = new Dictionary<Actor.Color, Dictionary<Actor.Color, Actor.Color>> {
 		{ Actor.Color.RED, 
@@ -52,11 +62,8 @@ public class EnemyController : MonoBehaviour
 
 	public static Actor.Color? MergeResult(Actor one, Actor another)
 	{
-		if(MergeCompatible(one, another)) {
-			return mergeDict[one.color][another.color];
-
-		}
-		return null;
+        Assert.IsTrue(mergeDict[one.color].ContainsKey(another.color), " | MergeResult() invalid: " + one.name + " and " + another.name);
+		return mergeDict[one.color][another.color];
 	}
 
 	public Actor Merge(Actor one, Actor another)
@@ -66,12 +73,12 @@ public class EnemyController : MonoBehaviour
         GameController.Log("Getting merge result for colors (" + one.color + ", " + another.color + "): " + resultColor, GameController.LogMerge);
 
 
-		// Check if valid merge before returning enemy
-		if(resultColor != null) {
-			return enemyVariants.Find(a => a.color == resultColor);
-		}
+        // Check if valid merge before returning enemy
+        if (resultColor != null) {
+            return GetEnemyPrefab(resultColor);
+        }
 
-		GameController.LogWarning(name + " | Invalid merge attempted with " + one.name + " and " + another.name, GameController.LogMerge);
+        GameController.LogWarning(name + " | Invalid merge attempted with " + one.name + " and " + another.name, GameController.LogMerge);
 		return null;
 	}
 }
