@@ -17,7 +17,6 @@ public class EnemyController : MonoBehaviour
     /// <param name="color">Enemy color</param>
     public Actor GetEnemyPrefab(Actor.Color? color)
     {
-        Assert.IsNotNull(color, name + " | passed null value to GetEnemyPrefab()");
         return enemyVariants.Find(a => a.color.Equals(color));
     }
 	
@@ -70,7 +69,7 @@ public class EnemyController : MonoBehaviour
 	public Actor Merge(Actor one, Actor another)
 	{
 		// Get merge result
-		Actor.Color resultColor = MergeResult(one, another);
+		Actor.Color? resultColor = MergeResult(one, another);
         GameController.Log("Getting merge result for colors (" + one.color + ", " + another.color + "): " + resultColor, GameController.LogMerge);
 
 
