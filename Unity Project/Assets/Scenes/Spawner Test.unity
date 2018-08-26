@@ -1582,6 +1582,7 @@ GameObject:
   - component: {fileID: 778928693}
   - component: {fileID: 778928692}
   - component: {fileID: 778928699}
+  - component: {fileID: 778928700}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -1631,6 +1632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  meleeDamage: 0
   isPlayer: 1
   gameController: {fileID: 0}
   enemyController: {fileID: 0}
@@ -1713,6 +1715,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 486a638d26c1dd4489986479dc77a270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &778928700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 778928691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7e4ae75f5938ca4ebab07495d7bcc14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &792420659

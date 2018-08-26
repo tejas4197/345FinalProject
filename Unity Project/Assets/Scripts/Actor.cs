@@ -21,6 +21,11 @@ public class Actor : MonoBehaviour {
 	/// Actor health
 	/// </summary>
 	public float health;
+
+    /// <summary>
+    /// Damage done on collision
+    /// </summary>
+    public float meleeDamage;
 	
 	/// <summary>
 	/// True if actor is player character
