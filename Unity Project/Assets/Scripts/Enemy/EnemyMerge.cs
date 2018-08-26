@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Assertions;
 
 public class EnemyMerge : MonoBehaviour 
 {
@@ -19,6 +20,11 @@ public class EnemyMerge : MonoBehaviour
 	/// </summary>
 	public Actor mergeEnemy;
 
+    /// <summary>
+    /// mergeEnemy's NavAgent Component
+    /// </summary>
+    public NavMeshAgent mergeEnemyNavAgent;
+
 	/// <summary>
 	/// Reference to this enemy's Actor component (located in parent object)
 	/// </summary>
@@ -33,20 +39,19 @@ public class EnemyMerge : MonoBehaviour
 
 	void Start () 
 	{
+        // Get reference to SphereCollider
 		SphereCollider mergeBounds = GetComponent<SphereCollider>();
-		if(!mergeBounds) {
-			GameController.LogWarning("Merge collider not found for " + name + ": please add a SphereCollider to a child of this GameObject", GameController.LogMerge);
-			return;
-		}
+        Assert.IsNotNull(mergeBounds, name + " | SphereCollider not found");
 
-		// Ignore collision with self
-		Physics.IgnoreCollision(mergeBounds, transform.parent.GetComponent<Collider>());
+        // Get reference to actor component
+        thisEnemy = GetComponentInParent<Actor>();
+        Assert.IsNotNull(thisEnemy, name + " | Actor component not found in parent object");
+
+        // Ignore collision with self
+        Physics.IgnoreCollision(mergeBounds, transform.parent.GetComponent<Collider>());
 
 		// Initialize merge state
 		state = MergeState.NOT_MERGING;
-
-		// Get reference to actor component
-		thisEnemy = GetComponentInParent<Actor>();
 
 		// Set position to parent
 		transform.localPosition = Vector3.zero;
@@ -99,9 +104,16 @@ public class EnemyMerge : MonoBehaviour
 			state = MergeState.NOT_MERGING;
 			return;
 		}
-		// Move towards enemy
-		mergeEnemy.GetComponent<NavMeshAgent>().SetDestination(transform.parent.position);
 
+        // Get reference to NavMeshAgent if haven't already
+        if(!mergeEnemyNavAgent) {
+            mergeEnemyNavAgent = mergeEnemy.GetComponent<NavMeshAgent>();
+        }
+
+        // Move towards enemy
+        mergeEnemyNavAgent.SetDestination(transform.parent.position);
+
+        // Check if we're close enough to merge
 		if(WithinRange()) {
             GameController.Log(transform.parent.name + " ready to merge with " + mergeEnemy.name, GameController.LogMerge);
 
@@ -136,7 +148,8 @@ public class EnemyMerge : MonoBehaviour
 	}
 
     /// <summary>
-    /// Merges this enemy with mergeEnemy to form new enemy (determined via EnemyController)
+    /// Merges thisEnemy with mergeEnemy to form new enemy (determined via EnemyController).
+    /// This method is only called on one of the enemies; the other is destroyed before it gets the chance.
     /// </summary>
     void Merge()
 	{
