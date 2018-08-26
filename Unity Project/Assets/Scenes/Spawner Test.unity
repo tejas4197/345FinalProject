@@ -584,6 +584,7 @@ GameObject:
   m_Component:
   - component: {fileID: 296613660}
   - component: {fileID: 296613661}
+  - component: {fileID: 296613662}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -598,7 +599,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 296613659}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.526, z: 8.19}
+  m_LocalPosition: {x: -15.98, y: -0.526, z: 10.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -615,12 +616,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 009dbb4ba70ab4c4a974f050a940cf29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyController: {fileID: 440252627}
   settings:
     minSpawnTime: 1
     maxSpawnTime: 3
     enemyTypes: 010000000200000003000000
-  spawnRadius: 3
-  enemyController: {fileID: 440252627}
+  surface: {fileID: 649850289}
+--- !u!135 &296613662
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 296613659}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 6.45
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &304672085 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4147112190764682, guid: ede2540a420b446248e5512e22697363,

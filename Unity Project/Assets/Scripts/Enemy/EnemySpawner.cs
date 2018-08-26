@@ -5,6 +5,8 @@ using UnityEngine.Assertions;
 
 public class EnemySpawner : MonoBehaviour {
 
+    public EnemyController enemyController;
+
     [System.Serializable]
     public class SpawnSettings {
         /// <summary>
@@ -27,25 +29,43 @@ public class EnemySpawner : MonoBehaviour {
     /// <summary>
     /// Radius within which enemies can spawn
     /// </summary>
-    public float spawnRadius;
+    float spawnRadius;
 
-    public EnemyController enemyController;
+    /// <summary>
+    /// Surface to spawn on (not required)
+    /// </summary>
+    public BoxCollider surface;
 
+    /// <summary>
+    /// True if enemy can spawn this frame
+    /// </summary>
     bool canSpawn;
 
 
     // Use this for initialization
     void Start ()
     {
+        // Set flag to true
         canSpawn = true;
+
+        // Get spawn radius (radius of attached SphereCollider)
+        SphereCollider spawnBounds = GetComponent<SphereCollider>();
+        Assert.IsNotNull(spawnBounds, "SphereCollider component not found on spawner " + name);
+        spawnRadius = spawnBounds.radius;
+
+        if(!surface) {
+            Debug.LogWarning("BoxCollider surface not found on spawner " + name + ". Please add a reference to the surface enemies will spawn on for easier spawn positioning.");
+        }
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
 		if(canSpawn) {
-            float delay = UnityEngine.Random.Range(settings.minSpawnTime, settings.maxSpawnTime);
+            // Select random spawn time/enemy color
+            float delay = Random.Range(settings.minSpawnTime, settings.maxSpawnTime);
             Actor.Color color = GetRandomColor();
+
             StartCoroutine(SpawnEnemy(delay, color));
         }
 	}
@@ -59,6 +79,9 @@ public class EnemySpawner : MonoBehaviour {
         return settings.enemyTypes[index];
     }
 
+    /// <summary>
+    /// Spawns new enemy of given color after given delay
+    /// </summary>
     IEnumerator SpawnEnemy(float delay, Actor.Color color)
     {
         // Set flag to false so method isn't called until we finish
@@ -67,13 +90,27 @@ public class EnemySpawner : MonoBehaviour {
         // Wait for delay
         yield return new WaitForSeconds(delay);
 
-        // Get reference to prefab
+        // Get enemy prefab before spawning
         Actor newEnemy = enemyController.GetEnemyPrefab(color);
         Assert.IsNotNull(newEnemy, "Enemy prefab returned null for color: " + color);
 
+        // Spawn enemy
         Instantiate(newEnemy);
-        Vector3 position = transform.position + (Vector3)Random.insideUnitCircle * spawnRadius;
+
+        // Set position within spawnRadius
+        Vector3 position = transform.position + (Random.insideUnitSphere * spawnRadius);
+
+        // Correct height to top of given surface or spawner height
+        if (surface) {
+            position.y = surface.bounds.max.y;
+        }
+        else {
+            position.y = transform.position.y;
+        }
+
         newEnemy.transform.position = position;
+
+
         Debug.Log("Spawned enemy at " + position.x + ", " + position.y + ", " + position.z);
 
         // Set flag to false so method isn't called until we finish
