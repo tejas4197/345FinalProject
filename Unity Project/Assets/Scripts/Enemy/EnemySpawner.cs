@@ -48,6 +48,11 @@ public class EnemySpawner : MonoBehaviour {
 
     Coroutine spawningCoroutine;
 
+    /// <summary>
+    /// Used to track actors occupying spawning radius
+    /// </summary>
+    public List<Actor> occupyingActors;
+
     void Start ()
     {
         // Get spawn radius (radius of attached SphereCollider)
@@ -62,23 +67,33 @@ public class EnemySpawner : MonoBehaviour {
         spawningCoroutine = StartCoroutine(SpawnEnemy());
     }
 
+    /// <summary>
+    /// Determines whether there are any Actors occupying the spawn space
+    /// </summary>
+    public bool IsOccupied()
+    {
+        // Remove all null actors from list before returning
+        occupyingActors.RemoveAll(a => a == null);
+
+        return occupyingActors.Count > 0;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         // Check if actor entered spawn zone
         Actor actor = other.GetComponent<Actor>();
         if (actor) {
-            GameController.Log(name + " | " + other.gameObject.name + " occupying space", GameController.LogSpawner);
+            GameController.Log(name + " | halted spawning until " + other.gameObject.name + " exits space", GameController.LogSpawner);
 
-            // Stop spawning if actor is player
-            if (actor.isPlayer) {
-                GameController.Log(name + " | halted spawning until " + other.gameObject.name + " exits space", GameController.LogSpawner);
+            // Add actor to occupying actors list
+            occupyingActors.Add(actor);
                 
-                // Stop subsequent spawning
-                enabled = false;
+            // Stop subsequent spawning
+            enabled = false;
 
-                // Stop coroutine if already in progress
-                StopCoroutine(spawningCoroutine);
-            }
+            // Stop coroutine if already in progress
+            StopCoroutine(spawningCoroutine);
+            spawning = false;
         }
     }
 
@@ -87,15 +102,14 @@ public class EnemySpawner : MonoBehaviour {
         // Check if actor exited spawn zone
         Actor actor = other.GetComponent<Actor>();
         if (actor) {
-            GameController.Log(name + " | " + other.gameObject.name + " occupying space", GameController.LogSpawner);
+            // Remove actor from occupying actors list
+            occupyingActors.Remove(actor);
+            GameController.Log(name + " | " + other.gameObject.name + " exited space", GameController.LogSpawner);
 
-            // Resume spawning if actor is player
-            if (actor.isPlayer) {
-                GameController.Log(name + " | " + other.gameObject.name + " exited space; resumed spawning", GameController.LogSpawner);
-
-                // Set flags to default
+            // Resume spawning if no longer occupied
+            if (!IsOccupied()) {
                 enabled = true;
-                spawning = false;
+                GameController.Log(name + " | " + " resuming spawning", GameController.LogSpawner);
             }
         }
     }
