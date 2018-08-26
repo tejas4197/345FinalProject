@@ -44,7 +44,7 @@ public class EnemySpawner : MonoBehaviour {
     /// <summary>
     /// True if spawning is enabled
     /// </summary>
-    bool enabled = true;
+    bool active = true;
 
     Coroutine spawningCoroutine;
 
@@ -63,8 +63,6 @@ public class EnemySpawner : MonoBehaviour {
         if(!surface) {
             GameController.LogWarning("BoxCollider surface not found on spawner " + name + ". Please add a reference to the surface enemies will spawn on for easier spawn positioning.", GameController.LogSpawner);
         }
-
-        spawningCoroutine = StartCoroutine(SpawnEnemy());
     }
 
     /// <summary>
@@ -89,10 +87,12 @@ public class EnemySpawner : MonoBehaviour {
             occupyingActors.Add(actor);
                 
             // Stop subsequent spawning
-            enabled = false;
+            active = false;
 
             // Stop coroutine if already in progress
-            StopCoroutine(spawningCoroutine);
+            if(spawningCoroutine != null) {
+                StopCoroutine(spawningCoroutine);
+            }
             spawning = false;
         }
     }
@@ -108,7 +108,7 @@ public class EnemySpawner : MonoBehaviour {
 
             // Resume spawning if no longer occupied
             if (!IsOccupied()) {
-                enabled = true;
+                active = true;
                 GameController.Log(name + " | " + " resuming spawning", GameController.LogSpawner);
             }
         }
@@ -117,7 +117,7 @@ public class EnemySpawner : MonoBehaviour {
     void Update ()
     {
         // Spawn when possible
-		if(enabled && !spawning) {
+		if(active && !spawning) {
             spawningCoroutine = StartCoroutine(SpawnEnemy());
         }
 	}

@@ -34,23 +34,41 @@ public class DoorManager : MonoBehaviour {
         /// Reference to door object
         /// </summary>
         public GameObject doorObject;
+
+        /// <summary>
+        /// True if door is unlocked
+        /// </summary>
         public bool isUnlocked;
 
         public float redThreshold;
         public float greenThreshold;
         public float blueThreshold;
+
+        /// <summary>
+        /// Spawners to activate after opening door
+        /// </summary>
+        public List<EnemySpawner> spawners;
     }
 
     /// <summary>
     /// List of doors
     /// </summary>
-    public Door door;
+    public List<Door> doors;
 
     public void CheckDoors()
     {
-        if (PlayerColorController.Instance.Color >= new ColorModel(door.redThreshold, door.greenThreshold, door.blueThreshold)) {
-            door.doorObject.SetActive(false);
-            door.isUnlocked = true;
+        foreach(Door door in doors) {
+            if (PlayerColorController.Instance.Color >= new ColorModel(door.redThreshold, door.greenThreshold, door.blueThreshold)) {
+                // Hide door object and set unlocked
+                door.doorObject.SetActive(false);
+                door.isUnlocked = true;
+
+                // Activate spawners behind door
+                foreach (EnemySpawner spawner in door.spawners) {
+                    spawner.gameObject.SetActive(true);
+                }
+            }
         }
+        
     }
 }
