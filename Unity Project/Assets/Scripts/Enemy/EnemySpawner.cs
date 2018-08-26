@@ -37,36 +37,74 @@ public class EnemySpawner : MonoBehaviour {
     public BoxCollider surface;
 
     /// <summary>
-    /// True if enemy can spawn this frame
+    /// True if currently spawning an enemy
     /// </summary>
-    bool canSpawn;
+    bool spawning = false;
 
+    /// <summary>
+    /// True if spawning is enabled
+    /// </summary>
+    bool enabled = true;
 
-    // Use this for initialization
+    Coroutine spawningCoroutine;
+
     void Start ()
     {
-        // Set flag to true
-        canSpawn = true;
-
         // Get spawn radius (radius of attached SphereCollider)
         SphereCollider spawnBounds = GetComponent<SphereCollider>();
         Assert.IsNotNull(spawnBounds, "SphereCollider component not found on spawner " + name);
         spawnRadius = spawnBounds.radius;
 
         if(!surface) {
-            Debug.LogWarning("BoxCollider surface not found on spawner " + name + ". Please add a reference to the surface enemies will spawn on for easier spawn positioning.");
+            GameController.LogWarning("BoxCollider surface not found on spawner " + name + ". Please add a reference to the surface enemies will spawn on for easier spawn positioning.", GameController.LogSpawner);
         }
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		if(canSpawn) {
-            // Select random spawn time/enemy color
-            float delay = Random.Range(settings.minSpawnTime, settings.maxSpawnTime);
-            Actor.Color color = GetRandomColor();
 
-            StartCoroutine(SpawnEnemy(delay, color));
+        spawningCoroutine = StartCoroutine(SpawnEnemy());
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // Check if actor entered spawn zone
+        Actor actor = other.GetComponent<Actor>();
+        if (actor) {
+            GameController.Log(name + " | " + other.gameObject.name + " occupying space", GameController.LogSpawner);
+
+            // Stop spawning if actor is player
+            if (actor.isPlayer) {
+                GameController.Log(name + " | halted spawning until " + other.gameObject.name + " exits space", GameController.LogSpawner);
+                
+                // Stop subsequent spawning
+                enabled = false;
+
+                // Stop coroutine if already in progress
+                StopCoroutine(spawningCoroutine);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // Check if actor exited spawn zone
+        Actor actor = other.GetComponent<Actor>();
+        if (actor) {
+            GameController.Log(name + " | " + other.gameObject.name + " occupying space", GameController.LogSpawner);
+
+            // Resume spawning if actor is player
+            if (actor.isPlayer) {
+                GameController.Log(name + " | " + other.gameObject.name + " exited space; resumed spawning", GameController.LogSpawner);
+
+                // Set flags to default
+                enabled = true;
+                spawning = false;
+            }
+        }
+    }
+
+    void Update ()
+    {
+        // Spawn when possible
+		if(enabled && !spawning) {
+            spawningCoroutine = StartCoroutine(SpawnEnemy());
         }
 	}
 
@@ -82,10 +120,14 @@ public class EnemySpawner : MonoBehaviour {
     /// <summary>
     /// Spawns new enemy of given color after given delay
     /// </summary>
-    IEnumerator SpawnEnemy(float delay, Actor.Color color)
+    IEnumerator SpawnEnemy()
     {
         // Set flag to false so method isn't called until we finish
-        canSpawn = false;
+        spawning = true;
+
+        // Select random spawn time/enemy color
+        float delay = Random.Range(settings.minSpawnTime, settings.maxSpawnTime);
+        Actor.Color color = GetRandomColor();
 
         // Wait for delay
         yield return new WaitForSeconds(delay);
@@ -108,12 +150,12 @@ public class EnemySpawner : MonoBehaviour {
             position.y = transform.position.y;
         }
 
+        // Assign position to enemy
         newEnemy.transform.position = position;
 
-
-        Debug.Log("Spawned enemy at " + position.x + ", " + position.y + ", " + position.z);
+        //GameController.Log("Spawned enemy at " + position.x + ", " + position.y + ", " + position.z, GameController.LogSpawner);
 
         // Set flag to false so method isn't called until we finish
-        canSpawn = true;
+        spawning = false;
     }
 }
