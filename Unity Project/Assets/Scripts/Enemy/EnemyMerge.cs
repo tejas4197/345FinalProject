@@ -135,7 +135,10 @@ public class EnemyMerge : MonoBehaviour
 		return Vector3.Magnitude(transform.parent.position - mergeEnemy.transform.position) < mergeDistance;
 	}
 
-	void Merge()
+    /// <summary>
+    /// Merges this enemy with mergeEnemy to form new enemy (determined via EnemyController)
+    /// </summary>
+    void Merge()
 	{
         GameController.Log(transform.parent.name + " merging with " + mergeEnemy.name, GameController.LogMerge);
 
@@ -151,6 +154,9 @@ public class EnemyMerge : MonoBehaviour
 		// Spawn new enemy at current location
 		newEnemy.transform.position = mergeEnemy.transform.position;
 		newEnemy = Instantiate(newEnemy);
+
+        // Set parent to Enemy container object
+        newEnemy.transform.parent = mergeEnemy.transform.parent;
 
 		// Set our state to merged
 		state = MergeState.MERGED;
