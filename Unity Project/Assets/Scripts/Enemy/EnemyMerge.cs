@@ -39,7 +39,15 @@ public class EnemyMerge : MonoBehaviour
 
 	void Start () 
 	{
-        // Get reference to SphereCollider
+        Init();
+	}
+
+	/// <summary>
+	/// Gets everything ready for merge
+	/// </summary>
+	void Init()
+	{
+		// Get reference to SphereCollider
 		SphereCollider mergeBounds = GetComponent<SphereCollider>();
         Assert.IsNotNull(mergeBounds, name + " | SphereCollider not found");
 
@@ -71,8 +79,10 @@ public class EnemyMerge : MonoBehaviour
 
 		// Check if within merge radius of enemy
 		if(!actor.isPlayer) {
+			// Check if OnTriggerEnter() got called before Start()
 			if(!thisEnemy) {
-				GameController.LogWarning("ERROR: Reference to actor on " + transform.parent.name + " not found", GameController.LogMerge);
+				GameController.LogWarning(transform.parent.name + " | Attempting to check merge-compatible with " + actor.name + " before Start(); calling EnemyMerge.Init()", GameController.LogMerge);
+				Init();
 			}
             GameController.Log(thisEnemy.name + "(Color " + thisEnemy.color + ") in merge radius of actor: " + actor.name + "(Color " + actor.color + ")", GameController.LogMerge);
 
