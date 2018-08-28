@@ -20,10 +20,10 @@ public class EnemyMerge : MonoBehaviour
 	/// </summary>
 	public Actor mergeEnemy;
 
-    /// <summary>
-    /// mergeEnemy's NavAgent Component
-    /// </summary>
-    public NavMeshAgent mergeEnemyNavAgent;
+	/// <summary>
+	/// mergeEnemy's move script
+	/// </summary>
+	public EnemyMoveCommand mergeEnemyMoveCmd;
 
 	/// <summary>
 	/// Reference to this enemy's Actor component (located in parent object)
@@ -88,7 +88,10 @@ public class EnemyMerge : MonoBehaviour
 
 			// Check if can merge with enemy
 			if(EnemyController.MergeCompatible(thisEnemy, actor) && !state.Equals(MergeState.MERGING)) {
+				// Get reference to enemy and move script
 				mergeEnemy = actor;
+				mergeEnemyMoveCmd = actor.GetComponent<EnemyMoveCommand>();
+				Assert.IsNotNull(mergeEnemyMoveCmd, thisEnemy.name + " | EnemyMoveCommand not found on mergeEnemy");
 
                 GameController.Log(transform.parent.name + " moving towards " + mergeEnemy.name, GameController.LogMerge);
 				InvokeRepeating("TryMerge", Time.deltaTime, Time.deltaTime);
@@ -115,13 +118,8 @@ public class EnemyMerge : MonoBehaviour
 			return;
 		}
 
-        // Get reference to NavMeshAgent if haven't already
-        if(!mergeEnemyNavAgent) {
-            mergeEnemyNavAgent = mergeEnemy.GetComponent<NavMeshAgent>();
-        }
-
         // Move towards enemy
-        mergeEnemyNavAgent.SetDestination(transform.parent.position);
+		mergeEnemyMoveCmd.target = thisEnemy;
 
         // Check if we're close enough to merge
 		if(WithinRange()) {

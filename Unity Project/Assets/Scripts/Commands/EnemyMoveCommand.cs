@@ -10,17 +10,26 @@ public class EnemyMoveCommand : Command {
 
 	public Actor target;
 
+	Actor player;
+
     private void Start()
     {
-        target = FindObjectsOfType<Actor>().Where(a => a.isPlayer).FirstOrDefault();
+		Init();
+		target = player;
     }
+
+	void Init()
+	{
+		navComponent = GetComponent<NavMeshAgent>();
+        player = FindObjectsOfType<Actor>().Where(a => a.isPlayer).FirstOrDefault();
+	}
 
     // TODO: add a listener to catch an EnemyMerge event and change target to mergeable enemy
 
     void Update ()
 	{
 		if(!navComponent) {
-			navComponent = GetComponent<NavMeshAgent>();
+			Init();
 		}
 
 		if(target) {
