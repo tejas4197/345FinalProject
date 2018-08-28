@@ -12,7 +12,7 @@ public class EnemyMoveCommand : Command {
 
     private void Start()
     {
-        target = FindObjectsOfType<Actor>().Where(a => a.isPlayer).First();
+        target = FindObjectsOfType<Actor>().Where(a => a.isPlayer).FirstOrDefault();
     }
 
     // TODO: add a listener to catch an EnemyMerge event and change target to mergeable enemy
@@ -23,6 +23,8 @@ public class EnemyMoveCommand : Command {
 			navComponent = GetComponent<NavMeshAgent>();
 		}
 
-		navComponent.SetDestination(target.transform.position);
+		if(target) {
+			navComponent.SetDestination(target.transform.position);
+		}
 	}
 }
