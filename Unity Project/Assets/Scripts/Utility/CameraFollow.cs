@@ -11,12 +11,14 @@ public class CameraFollow : MonoBehaviour
 
     void Start()
     {
+        // Save offset at game start
         offset_ = transform.position - player.transform.position; //+ offset;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
+        // Adjust camera towards player based on offset
         transform.position = player.transform.position + offset_;
     }
 }
