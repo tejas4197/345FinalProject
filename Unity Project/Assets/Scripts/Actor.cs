@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /*
 
@@ -76,11 +77,16 @@ public class Actor : MonoBehaviour {
         health -= damage;
         Debug.Log("Dealt damage to " + gameObject.name);
         if (gameObject.tag.Equals("Player"))
-            healthNum.text = health.ToString();
+            healthNum.text = "Health: " + health;
         if (health <= 0)
         {
             ColorModel colorToGive = gameObject.GetComponent<ColorModel>();
             Destroy(gameObject);
+
+			// Reload scene if player dies
+			if(isPlayer) {
+				UnityEngine.SceneManagement.SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+			}
 
             if (colorToGive != null)
                 PlayerColorController.Instance.Color += colorToGive;
