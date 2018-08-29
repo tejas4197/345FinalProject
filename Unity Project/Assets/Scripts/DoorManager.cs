@@ -23,11 +23,6 @@ public class DoorManager : MonoBehaviour {
     }
     #endregion
 
-    public GameObject firstDoor;
-    public float firstConditionRed;
-    public float firstConditionGreen;
-    public float firstConditionBlue;
-
     [System.Serializable]
     public class Door {
         /// <summary>
