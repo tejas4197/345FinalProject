@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4566453862403114}
   - component: {fileID: 33676077398165688}
   - component: {fileID: 23947045218836292}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pPyramid1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4396413628890084}
   - component: {fileID: 33016427750829234}
   - component: {fileID: 23685198379293782}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pPyramid3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 195836615573671580}
   - component: {fileID: 114573145020223488}
   - component: {fileID: 54020767164420054}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Blue Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,6 +253,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   target: {fileID: 0}
+  pathUpdateMinFrequency: 0.05
+  pathUpdateMaxFrequency: 0.1
 --- !u!195 &195836615573671580
 NavMeshAgent:
   m_ObjectHideFlags: 1

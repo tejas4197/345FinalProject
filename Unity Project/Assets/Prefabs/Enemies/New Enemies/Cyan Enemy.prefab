@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4714884593717596}
   - component: {fileID: 33114288895485584}
   - component: {fileID: 23758704292291110}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pCone1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4176994127518512}
   - component: {fileID: 33258432865272838}
   - component: {fileID: 23018968518279278}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pCone2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 195887197412642558}
   - component: {fileID: 114746241198616818}
   - component: {fileID: 54556510322535720}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cyan Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 4960654541954452}
   - component: {fileID: 33787315288803204}
   - component: {fileID: 23906916935087692}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pSphere1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,6 +309,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   target: {fileID: 0}
+  pathUpdateMinFrequency: 0.05
+  pathUpdateMaxFrequency: 0.1
 --- !u!114 &114746241198616818
 MonoBehaviour:
   m_ObjectHideFlags: 1

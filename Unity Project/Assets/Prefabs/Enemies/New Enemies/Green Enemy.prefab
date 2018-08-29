@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4816702841290112}
   - component: {fileID: 33297509757593398}
   - component: {fileID: 23032714750006174}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pCube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 195591653297727938}
   - component: {fileID: 114494915677875964}
   - component: {fileID: 54391577193680362}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Green Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,6 +163,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   target: {fileID: 0}
+  pathUpdateMinFrequency: 0.05
+  pathUpdateMaxFrequency: 0.1
 --- !u!114 &114494915677875964
 MonoBehaviour:
   m_ObjectHideFlags: 1

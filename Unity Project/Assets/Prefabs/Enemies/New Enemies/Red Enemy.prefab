@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 195150306756105678}
   - component: {fileID: 114383547358816970}
   - component: {fileID: 54885726479794072}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Red Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 4333029497412164}
   - component: {fileID: 33875617396080136}
   - component: {fileID: 23881872741385836}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pPyramid2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 4537922802518192}
   - component: {fileID: 33019358059742594}
   - component: {fileID: 23447941520782358}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pPyramid1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,6 +236,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   target: {fileID: 0}
+  pathUpdateMinFrequency: 0.05
+  pathUpdateMaxFrequency: 0.1
 --- !u!114 &114383547358816970
 MonoBehaviour:
   m_ObjectHideFlags: 1

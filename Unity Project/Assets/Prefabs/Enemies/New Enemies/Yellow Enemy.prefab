@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4736964466674338}
   - component: {fileID: 33205381148103318}
   - component: {fileID: 23806101092664184}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pCube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 195715106931031358}
   - component: {fileID: 114983633466350134}
   - component: {fileID: 54540669421313504}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Yellow Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 4342652341130190}
   - component: {fileID: 33226999894199556}
   - component: {fileID: 23563762660102360}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pPyramid1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,6 +236,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   target: {fileID: 0}
+  pathUpdateMinFrequency: 0.05
+  pathUpdateMaxFrequency: 0.1
 --- !u!114 &114983633466350134
 MonoBehaviour:
   m_ObjectHideFlags: 1

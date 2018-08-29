@@ -12,11 +12,32 @@ public class EnemyMoveCommand : Command {
 
 	Actor player;
 
+	public float pathUpdateMinFrequency;
+	public float pathUpdateMaxFrequency;
+
     private void Start()
     {
 		Init();
 		target = player;
+		float delay = Random.Range(pathUpdateMinFrequency, pathUpdateMaxFrequency);
+		StartCoroutine(GoToDestination(delay));
     }
+
+	IEnumerator GoToDestination(float delay)
+	{
+		yield return new WaitForSeconds(delay);
+
+		if(!navComponent) {
+			Init();
+		}
+
+		if(target) {
+			navComponent.SetDestination(target.transform.position);
+		}
+
+		delay = Random.Range(pathUpdateMinFrequency, pathUpdateMaxFrequency);
+		StartCoroutine(GoToDestination(delay));
+	}
 
 	void Init()
 	{
@@ -28,12 +49,12 @@ public class EnemyMoveCommand : Command {
 
     void Update ()
 	{
-		if(!navComponent) {
-			Init();
-		}
+		// if(!navComponent) {
+		// 	Init();
+		// }
 
-		if(target) {
-			navComponent.SetDestination(target.transform.position);
-		}
+		// if(target) {
+		// 	navComponent.SetDestination(target.transform.position);
+		// }
 	}
 }
