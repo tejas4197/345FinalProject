@@ -55,7 +55,7 @@ public class PlayerPaint : MonoBehaviour {
                 angle = deltaX > 0 ? angle - 90 : angle + 90;
 
                 objectRotation.eulerAngles = new Vector3(90, angle, 0);
-                objectPosition.y = 26.7f;
+                objectPosition.y = transform.parent.transform.position.y;
 
                 //Create and resize paint
                 currentPaint = Instantiate(paint, objectPosition, objectRotation);
