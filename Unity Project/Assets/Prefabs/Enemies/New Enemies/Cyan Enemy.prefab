@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 195887197412642558}
   - component: {fileID: 114746241198616818}
   - component: {fileID: 54556510322535720}
+  - component: {fileID: 135416346805856012}
   m_Layer: 8
   m_Name: Cyan Enemy
   m_TagString: Untagged
@@ -133,7 +134,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1481698963689250}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.459591, y: 0.37297374, z: -1.194149}
+  m_LocalPosition: {x: -19.107822, y: -0.095, z: -21.121181}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4714884593717596}
@@ -402,6 +403,18 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 2.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &135416346805856012
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1481698963689250}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &195887197412642558
 NavMeshAgent:

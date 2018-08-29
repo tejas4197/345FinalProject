@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 195715106931031358}
   - component: {fileID: 114983633466350134}
   - component: {fileID: 54540669421313504}
+  - component: {fileID: 135813011458443418}
   m_Layer: 8
   m_Name: Yellow Enemy
   m_TagString: Untagged
@@ -116,8 +117,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1408379025926036}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.4278316, y: -0.13695914, z: -5.1791086}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -19.646618, y: -0.073, z: -21.697857}
+  m_LocalScale: {x: 1.6775557, y: 1.6775558, z: 1.6775558}
   m_Children:
   - {fileID: 4736964466674338}
   - {fileID: 4342652341130190}
@@ -329,6 +330,18 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 2.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &135813011458443418
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1408379025926036}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.8
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &195715106931031358
 NavMeshAgent:

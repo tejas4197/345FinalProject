@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 195836615573671580}
   - component: {fileID: 114573145020223488}
   - component: {fileID: 54020767164420054}
+  - component: {fileID: 135991304163439704}
   m_Layer: 8
   m_Name: Blue Enemy
   m_TagString: Untagged
@@ -129,7 +130,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1598237593401096}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.23, y: 0.006587267, z: -2.9024868}
+  m_LocalPosition: {x: -15.447691, y: -0.099, z: -22.489677}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4566453862403114}
@@ -329,6 +330,18 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 2.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &135991304163439704
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1598237593401096}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &195836615573671580
 NavMeshAgent:
