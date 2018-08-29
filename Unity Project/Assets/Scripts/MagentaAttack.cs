@@ -19,8 +19,9 @@ public class MagentaAttack : MonoBehaviour {
         if (timer > fireCooldown && Physics.Linecast(gameObject.transform.position, PlayerRef.Instance.transform.position, out hit) && hit.distance <= range)
         {
             Vector3 towards = PlayerRef.Instance.transform.position - gameObject.transform.position;
+            towards.y = 0;
             towards.Normalize();
-            GameObject currBullet = Instantiate(bullet, gameObject.transform.position + towards, Quaternion.identity);
+            GameObject currBullet = Instantiate(bullet, gameObject.transform.position + towards * 2, Quaternion.identity);
             currBullet.GetComponent<Rigidbody>().AddForce(towards * bulletSpeed);
 
             timer = 0;

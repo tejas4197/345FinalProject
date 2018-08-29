@@ -31,7 +31,7 @@ public class CyanAttack : MonoBehaviour {
         {
             foreach(Vector3 v in vectors)
             {
-                GameObject currBullet = Instantiate(bullet, gameObject.transform.position + v, Quaternion.identity);
+                GameObject currBullet = Instantiate(bullet, gameObject.transform.position + v * 2, Quaternion.identity);
                 currBullet.GetComponent<Rigidbody>().AddForce(v * bulletSpeed);
             }
             
