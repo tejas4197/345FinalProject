@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
 
 /*
 
@@ -21,6 +22,8 @@ public class Actor : MonoBehaviour {
 	/// Actor health
 	/// </summary>
 	public float health;
+
+    public Text healthNum;
 
     /// <summary>
     /// Damage done on collision
@@ -72,6 +75,8 @@ public class Actor : MonoBehaviour {
     {
         health -= damage;
         Debug.Log("Dealt damage to " + gameObject.name);
+        if (gameObject.tag.Equals("Player"))
+            healthNum.text = health.ToString();
         if (health <= 0)
         {
             ColorModel colorToGive = gameObject.GetComponent<ColorModel>();

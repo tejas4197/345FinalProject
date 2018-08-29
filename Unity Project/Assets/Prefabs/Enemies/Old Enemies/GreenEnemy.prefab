@@ -220,6 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  healthNum: {fileID: 0}
   meleeDamage: 20
   isPlayer: 0
   gameController: {fileID: 0}
