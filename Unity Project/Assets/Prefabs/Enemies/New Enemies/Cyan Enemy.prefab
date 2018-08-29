@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 114878623396991316}
   m_Layer: 8
   m_Name: Cyan Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135,7 +135,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1481698963689250}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.683111, y: -0.63695914, z: -21.703709}
+  m_LocalPosition: {x: 10.727894, y: 0.031158358, z: -33.79665}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4714884593717596}
