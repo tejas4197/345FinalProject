@@ -1,29 +1,24 @@
 fileFormatVersion: 2
-guid: 69dcb31d2858e3f42b7981ad0d2049d6
+guid: 26e678c179c962b4cbafa23424f31de6
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: pPyramid1
-    100004: pPyramid3
-    400000: //RootNode
-    400002: pPyramid1
-    400004: pPyramid3
-    2100000: aiStandardSurface1
+    100000: pPyramid1
+    100002: pPyramid2
+    100004: //RootNode
+    400000: pPyramid1
+    400002: pPyramid2
+    400004: //RootNode
+    2100000: aiStandardSurface2
     2300000: pPyramid1
-    2300002: pPyramid3
+    2300002: pPyramid2
     3300000: pPyramid1
-    3300002: pPyramid3
-    4300000: pPyramid3
+    3300002: pPyramid2
+    4300000: pPyramid2
     4300002: pPyramid1
     7400000: Take 001
     9500000: //RootNode
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: aiStandardSurface1
-    second: {fileID: 2100000, guid: 0b3494af62e626b4bb431d1aeb22fba8, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
@@ -55,7 +50,7 @@ ModelImporter:
       name: Take 001
       takeName: Take 001
       firstFrame: 1
-      lastFrame: 48
+      lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -102,11 +97,6 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-<<<<<<< HEAD:Unity Project/Assets/Prefabs/Enemy_2.fbx.meta
-=======
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
->>>>>>> 98e9fa1134ea5b6a33993db6a4f62ee40977434b:Unity Project/Assets/Prefabs/Enemies/Enemy_Models/Enemy_2.fbx.meta
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
