@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -30,11 +31,13 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        // Get desired position towards player based on offset
-        Vector3 newPos = player.position + offset_;
-        
-        // Smooth current position towards newPos using linear interpolation
-        transform.position = Vector3.Lerp(transform.position, newPos, smoothSpeed);
+        if(player) {
+            // Get desired position towards player based on offset
+            Vector3 newPos = player.position + offset_;
+            
+            // Smooth current position towards newPos using linear interpolation
+            transform.position = Vector3.Lerp(transform.position, newPos, smoothSpeed);
+        }
     }
 }
 
