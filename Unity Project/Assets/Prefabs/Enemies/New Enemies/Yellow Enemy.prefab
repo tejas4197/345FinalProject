@@ -37,8 +37,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4514025193258796}
   - component: {fileID: 95081810112788960}
-  - component: {fileID: 195715106931031358}
   - component: {fileID: 114126761655273106}
+  - component: {fileID: 195715106931031358}
+  - component: {fileID: 114983633466350134}
   m_Layer: 0
   m_Name: Yellow Enemy
   m_TagString: Untagged
@@ -219,6 +220,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   target: {fileID: 0}
+--- !u!114 &114983633466350134
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1408379025926036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b9a35b0beb43444ca21bd06bb867ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  meleeDamage: 40
+  isPlayer: 0
+  gameController: {fileID: 0}
+  enemyController: {fileID: 0}
+  color: 6
 --- !u!195 &195715106931031358
 NavMeshAgent:
   m_ObjectHideFlags: 1

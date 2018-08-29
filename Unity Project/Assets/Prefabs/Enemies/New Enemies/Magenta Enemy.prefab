@@ -19,11 +19,12 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4515246907536374}
-  - component: {fileID: 33981637475946026}
   - component: {fileID: 23424307766318940}
   - component: {fileID: 95829041033290616}
   - component: {fileID: 114582449547671110}
   - component: {fileID: 195954257598330042}
+  - component: {fileID: 114941245570609726}
+  - component: {fileID: 33981637475946026}
   m_Layer: 0
   m_Name: Magenta Enemy
   m_TagString: Untagged
@@ -117,6 +118,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   target: {fileID: 0}
+--- !u!114 &114941245570609726
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1971267092421080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b9a35b0beb43444ca21bd06bb867ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  meleeDamage: 40
+  isPlayer: 0
+  gameController: {fileID: 0}
+  enemyController: {fileID: 0}
+  color: 5
 --- !u!195 &195954257598330042
 NavMeshAgent:
   m_ObjectHideFlags: 1

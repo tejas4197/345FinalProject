@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 95081202250802662}
   - component: {fileID: 114483638335948894}
   - component: {fileID: 195887197412642558}
+  - component: {fileID: 114746241198616818}
   m_Layer: 0
   m_Name: Cyan Enemy
   m_TagString: Untagged
@@ -292,6 +293,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   target: {fileID: 0}
+--- !u!114 &114746241198616818
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1481698963689250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b9a35b0beb43444ca21bd06bb867ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  meleeDamage: 40
+  isPlayer: 0
+  gameController: {fileID: 0}
+  enemyController: {fileID: 0}
+  color: 4
 --- !u!195 &195887197412642558
 NavMeshAgent:
   m_ObjectHideFlags: 1

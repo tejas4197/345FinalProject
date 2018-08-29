@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 95432320456107690}
   - component: {fileID: 114196675628458634}
   - component: {fileID: 195150306756105678}
+  - component: {fileID: 114383547358816970}
   m_Layer: 0
   m_Name: Red Enemy
   m_TagString: Untagged
@@ -219,6 +220,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   target: {fileID: 0}
+--- !u!114 &114383547358816970
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1082165990625034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b9a35b0beb43444ca21bd06bb867ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  meleeDamage: 20
+  isPlayer: 0
+  gameController: {fileID: 0}
+  enemyController: {fileID: 0}
+  color: 1
 --- !u!195 &195150306756105678
 NavMeshAgent:
   m_ObjectHideFlags: 1

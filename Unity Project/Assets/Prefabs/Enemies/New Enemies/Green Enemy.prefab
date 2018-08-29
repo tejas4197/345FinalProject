@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 95253757932279200}
   - component: {fileID: 114170835094746856}
   - component: {fileID: 195591653297727938}
+  - component: {fileID: 114494915677875964}
   m_Layer: 0
   m_Name: Green Enemy
   m_TagString: Untagged
@@ -146,6 +147,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   target: {fileID: 0}
+--- !u!114 &114494915677875964
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1500084854880780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b9a35b0beb43444ca21bd06bb867ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  meleeDamage: 20
+  isPlayer: 0
+  gameController: {fileID: 0}
+  enemyController: {fileID: 0}
+  color: 2
 --- !u!195 &195591653297727938
 NavMeshAgent:
   m_ObjectHideFlags: 1
