@@ -43,6 +43,8 @@ public class DoorManager : MonoBehaviour {
         /// Spawners to activate after opening door
         /// </summary>
         public List<EnemySpawner> spawners;
+
+        public float timeToOpen;
     }
 
     /// <summary>
@@ -65,5 +67,31 @@ public class DoorManager : MonoBehaviour {
             }
         }
         
+    }
+
+    IEnumerator OpenDoor(Door door)
+    {
+        float delay = door.timeToOpen;
+        yield return new WaitForSeconds(delay);
+
+        // Hide door object and set unlocked
+        door.doorObject.SetActive(false);
+        door.isUnlocked = true;
+
+        // Activate spawners behind door
+        foreach (EnemySpawner spawner in door.spawners) {
+            spawner.gameObject.SetActive(true);
+        }
+    }
+
+    /// <summary>
+    /// Start is called on the frame when a script is enabled just before
+    /// any of the Update methods is called the first time.
+    /// </summary>
+    void Start()
+    {
+        foreach(Door door in doors) {
+            StartCoroutine(OpenDoor(door));
+        }
     }
 }
