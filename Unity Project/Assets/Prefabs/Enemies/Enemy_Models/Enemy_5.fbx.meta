@@ -1,24 +1,34 @@
 fileFormatVersion: 2
-guid: 69dcb31d2858e3f42b7981ad0d2049d6
+guid: 7a0cd3b9afd33c943b0a22378d93e129
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: pPyramid1
-    100004: pPyramid3
+    100002: pCone1
+    100004: pCone2
+    100006: pSphere1
     400000: //RootNode
-    400002: pPyramid1
-    400004: pPyramid3
-    2100000: aiStandardSurface1
-    2300000: pPyramid1
-    2300002: pPyramid3
-    3300000: pPyramid1
-    3300002: pPyramid3
-    4300000: pPyramid3
-    4300002: pPyramid1
+    400002: pCone1
+    400004: pCone2
+    400006: pSphere1
+    2100000: lambert1
+    2300000: pCone1
+    2300002: pCone2
+    2300004: pSphere1
+    3300000: pCone1
+    3300002: pCone2
+    3300004: pSphere1
+    4300000: pCone1
+    4300002: pCone2
+    4300004: pSphere1
     7400000: Take 001
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: d9cc110981e4aed4fa01136951a49a06, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -50,7 +60,7 @@ ModelImporter:
       name: Take 001
       takeName: Take 001
       firstFrame: 1
-      lastFrame: 48
+      lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -97,6 +107,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

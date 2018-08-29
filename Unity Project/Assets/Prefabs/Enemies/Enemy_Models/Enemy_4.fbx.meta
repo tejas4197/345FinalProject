@@ -1,17 +1,29 @@
 fileFormatVersion: 2
-guid: 021a41e1df8f9ee429b30f177525ddad
+guid: 6c6d2f483504e334b8edc85612ca7091
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: pCube1
+    100004: pPyramid1
     400000: //RootNode
+    400002: pCube1
+    400004: pPyramid1
     2100000: lambert1
-    2300000: //RootNode
-    3300000: //RootNode
+    2300000: pCube1
+    2300002: pPyramid1
+    3300000: pCube1
+    3300002: pPyramid1
     4300000: pCube1
+    4300002: pPyramid1
     7400000: Take 001
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: a9a786b06bf8d9047bb9a1932ba80736, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -90,6 +102,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
