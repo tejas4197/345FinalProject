@@ -20,12 +20,12 @@ public class EnemyMoveCommand : Command {
 		Init();
 		target = player;
 		float delay = Random.Range(pathUpdateMinFrequency, pathUpdateMaxFrequency);
-		StartCoroutine(GoToDestination(delay));
+		
+		InvokeRepeating("GoToDestination", Time.deltaTime, delay);
     }
 
-	IEnumerator GoToDestination(float delay)
+	void GoToDestination()
 	{
-		yield return new WaitForSeconds(delay);
 
 		if(!navComponent) {
 			Init();
@@ -34,9 +34,6 @@ public class EnemyMoveCommand : Command {
 		if(target) {
 			navComponent.SetDestination(target.transform.position);
 		}
-
-		delay = Random.Range(pathUpdateMinFrequency, pathUpdateMaxFrequency);
-		StartCoroutine(GoToDestination(delay));
 	}
 
 	void Init()
