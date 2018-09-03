@@ -32,7 +32,10 @@ public class PlayerColorController : MonoBehaviour {
         set
         {
             _color = value;
-            DoorManager.Instance.CheckDoors();
+            if (DoorManager.Instance)
+            {
+                DoorManager.Instance.CheckDoors();
+            }
         }
     }
 }
