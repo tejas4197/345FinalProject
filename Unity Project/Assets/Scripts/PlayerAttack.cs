@@ -53,6 +53,9 @@ public class PlayerAttack : MonoBehaviour
                 StartCoroutine(Attack());
             }
 
+            // Play swipe sound effect
+            AudioController.Instance.PlaySoundEffect(AudioController.SoundType.PLAYER_ATTACK);
+
             timer = 0;
         }
     }
