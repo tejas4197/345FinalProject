@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 54904314765365538}
   - component: {fileID: 135910033066418856}
   - component: {fileID: 114316055546971162}
+  - component: {fileID: 114283548350018918}
   m_Layer: 8
   m_Name: Magenta Enemy
   m_TagString: Enemy
@@ -60,7 +61,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1971267092421080}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.669757, y: 0.031158358, z: -22.105612}
+  m_LocalPosition: {x: -2.2954173, y: -0.008841656, z: -16.16921}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4629265602313878}
@@ -186,6 +187,20 @@ MonoBehaviour:
   mergeEnemyMoveCmd: {fileID: 0}
   thisEnemy: {fileID: 0}
   mergeDistance: 1.5
+--- !u!114 &114283548350018918
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1971267092421080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f67bdd6f5cdd2943a95be6a4790e10f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Red: 20
+  Green: 0
+  Blue: 20
 --- !u!114 &114316055546971162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -228,6 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  healthNum: {fileID: 0}
   meleeDamage: 40
   isPlayer: 0
   gameController: {fileID: 0}
