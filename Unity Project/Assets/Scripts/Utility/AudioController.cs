@@ -26,25 +26,19 @@ public class AudioController : MonoBehaviour
 
 
 	[System.Serializable]
-	
 	public struct Audio {
 		public SoundType type;
 		public List<AudioClip> audioClips;
 		public AudioSource audioSource;
         public float volume;
 		public bool looping;
-		public bool playonAwake;
+		public bool playOnAwake;
 	}
 
 	public enum SoundType {
 		PLAYER_ATTACK,
 		MUSIC
 	};
-
-	/// <summary>
-	/// Game music
-	/// </summary>
-	public AudioClip music;
 
 	/// <summary>
 	/// List of playable audio effects
@@ -66,10 +60,13 @@ public class AudioController : MonoBehaviour
 		// Create audio source for associated audio clip
 		foreach(Audio audio in audioList) {
 			InitializeAudioSource(audio);
-		}
 
-		// Play music at start
-		PlaySoundEffect(SoundType.MUSIC);
+			// Play at start if playOnAwake=true
+			if(audio.playOnAwake) {
+				PlaySoundEffect(SoundType.MUSIC);
+			}
+		}
+		
 	}
 
 	/// <summary>
@@ -89,7 +86,7 @@ public class AudioController : MonoBehaviour
 		audioSource.clip = audio.audioClips[0];
 		audioSource.loop = audio.looping;
         audioSource.volume = audio.volume;
-		audioSource.playOnAwake = audio.playonAwake;
+		audioSource.playOnAwake = audio.playOnAwake;
 
 		// Give audio a reference to its audiosource
 		audio.audioSource = audioSource;

@@ -4519,7 +4519,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61475c980a3f84e64a552981e3f3889d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: {fileID: 0}
   audioList:
   - type: 0
     audioClips:
@@ -4529,7 +4528,14 @@ MonoBehaviour:
     audioSource: {fileID: 0}
     volume: 1
     looping: 0
-    playonAwake: 0
+    playOnAwake: 0
+  - type: 1
+    audioClips:
+    - {fileID: 8300000, guid: d97b1ce2f41e946c79683c50d67a890d, type: 3}
+    audioSource: {fileID: 0}
+    volume: 0.5
+    looping: 1
+    playOnAwake: 1
 --- !u!4 &1622700023
 Transform:
   m_ObjectHideFlags: 0
