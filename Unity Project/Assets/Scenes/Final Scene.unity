@@ -4502,6 +4502,21 @@ Prefab:
       propertyPath: healthNum
       value: 
       objectReference: {fileID: 1634511270}
+    - target: {fileID: 114923311759635336, guid: c31e6903bb4ca439d9806440ed5366b3,
+        type: 2}
+      propertyPath: redText
+      value: 
+      objectReference: {fileID: 1697442899}
+    - target: {fileID: 114923311759635336, guid: c31e6903bb4ca439d9806440ed5366b3,
+        type: 2}
+      propertyPath: greenText
+      value: 
+      objectReference: {fileID: 2125879236}
+    - target: {fileID: 114923311759635336, guid: c31e6903bb4ca439d9806440ed5366b3,
+        type: 2}
+      propertyPath: blueText
+      value: 
+      objectReference: {fileID: 771808928}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c31e6903bb4ca439d9806440ed5366b3, type: 2}
   m_IsPrefabParent: 0
