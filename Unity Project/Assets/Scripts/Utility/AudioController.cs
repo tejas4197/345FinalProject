@@ -5,6 +5,26 @@ using UnityEngine.Assertions;
 
 public class AudioController : MonoBehaviour 
 {
+	#region Singleton
+    public static AudioController Instance { get; private set; }
+
+    //If an instance of this singleton exists, then destroy the gameobject (this means there are more than one)
+    //If an instance doesn't exist, create one
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Debug.Log("Warning: found more than one instance of AudioController Singleton. Destroying " + gameObject.name + " gameobject.");
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+    #endregion
+
+
 	[System.Serializable]
 	
 	public struct Audio {
