@@ -4529,13 +4529,23 @@ MonoBehaviour:
     volume: 1
     looping: 0
     playOnAwake: 0
-  - type: 1
+  - type: 2
     audioClips:
     - {fileID: 8300000, guid: d97b1ce2f41e946c79683c50d67a890d, type: 3}
     audioSource: {fileID: 0}
     volume: 0.5
     looping: 1
     playOnAwake: 1
+  - type: 1
+    audioClips:
+    - {fileID: 8300000, guid: e5b4dedd2ba674a41a60e5938cef1e15, type: 3}
+    - {fileID: 8300000, guid: e2362b295a8b741848a86c800f8c422f, type: 3}
+    - {fileID: 8300000, guid: 398389f5c038b4ccba2a1b8e091a8a39, type: 3}
+    - {fileID: 8300000, guid: 15d7aaf8cb1174e8f893e1e4f415d0d7, type: 3}
+    audioSource: {fileID: 0}
+    volume: 1
+    looping: 0
+    playOnAwake: 0
 --- !u!4 &1622700023
 Transform:
   m_ObjectHideFlags: 0

@@ -37,6 +37,7 @@ public class AudioController : MonoBehaviour
 
 	public enum SoundType {
 		PLAYER_ATTACK,
+		ENEMY_PROJECTILE,
 		MUSIC
 	};
 

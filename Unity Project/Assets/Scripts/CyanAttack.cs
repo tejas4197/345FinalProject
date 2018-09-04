@@ -36,6 +36,9 @@ public class CyanAttack : MonoBehaviour {
             }
             
             timer = 0;
+
+            // Play sound effect
+            AudioController.Instance.PlaySoundEffect(AudioController.SoundType.ENEMY_PROJECTILE);
         }
     }
 }

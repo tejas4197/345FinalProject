@@ -25,6 +25,9 @@ public class MagentaAttack : MonoBehaviour {
             currBullet.GetComponent<Rigidbody>().AddForce(towards * bulletSpeed);
 
             timer = 0;
+
+            // Play sound effect
+            AudioController.Instance.PlaySoundEffect(AudioController.SoundType.ENEMY_PROJECTILE);
         }
     }
 }
