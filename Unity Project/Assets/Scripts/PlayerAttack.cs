@@ -48,7 +48,7 @@ public class PlayerAttack : MonoBehaviour
 
                 //Instantiate attack particle
                 currAtkParticles = Instantiate(atkParticles, gameObject.transform, false);
-                currAtkParticles.transform.Translate(atkVector.x, 1, atkVector.z);
+                currAtkParticles.transform.Translate(atkVector.x, 0, atkVector.z);
                 currAtkParticles.transform.RotateAround(gameObject.transform.position, Vector3.up, atkConeAngle / 2);
                 StartCoroutine(Attack());
             }

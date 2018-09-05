@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2503,6 +2503,93 @@ Transform:
   m_Father: {fileID: 1889182509}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &878886048
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 878886052}
+  - component: {fileID: 878886051}
+  - component: {fileID: 878886050}
+  - component: {fileID: 878886049}
+  m_Layer: 9
+  m_Name: RaycastBackground
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!64 &878886049
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 878886048}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &878886050
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 878886048}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &878886051
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 878886048}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &878886052
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 878886048}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.354531, y: -0.66, z: 0.50056297}
+  m_LocalScale: {x: 78.29321, y: 78.293236, z: 78.293236}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &929796999
 GameObject:
   m_ObjectHideFlags: 0
@@ -4451,7 +4538,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4621769162208916, guid: c31e6903bb4ca439d9806440ed5366b3, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.36304086
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 4621769162208916, guid: c31e6903bb4ca439d9806440ed5366b3, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4517,6 +4604,23 @@ Prefab:
       propertyPath: blueText
       value: 
       objectReference: {fileID: 771808928}
+    - target: {fileID: 33077211964830250, guid: c31e6903bb4ca439d9806440ed5366b3,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: fe01069e567f4834bbea893335933b06, type: 3}
+    - target: {fileID: 4621769162208916, guid: c31e6903bb4ca439d9806440ed5366b3, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.012015701
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621769162208916, guid: c31e6903bb4ca439d9806440ed5366b3, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.012015701
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621769162208916, guid: c31e6903bb4ca439d9806440ed5366b3, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.012015701
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c31e6903bb4ca439d9806440ed5366b3, type: 2}
   m_IsPrefabParent: 0
